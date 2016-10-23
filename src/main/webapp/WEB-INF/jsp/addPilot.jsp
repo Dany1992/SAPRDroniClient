@@ -30,7 +30,7 @@
         <td>Taxcode:<input type="text" name="taxcode"><td>
     </tr>
 	<tr>
-        <td>Birthdate:<input type="text" name="birthdate"><td>
+        <td>Birthdate:<input type="date-time" name="birthdate"><td>
     </tr>
 	<tr>
         <td>Residence:<input type="text" name="residence"><td>

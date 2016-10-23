@@ -1,4 +1,4 @@
-package it.uniroma2.sapr.view;
+package it.uniroma2.saprClient.view;
 
 public class Pilot {
 	

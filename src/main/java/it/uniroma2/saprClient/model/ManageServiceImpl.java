@@ -6,7 +6,7 @@ import it.uniroma2.sapr.service.Exception_Exception;
 import it.uniroma2.sapr.service.Operation;
 import it.uniroma2.sapr.service.RequestPilot;
 import it.uniroma2.sapr.service.SAPRDroni;
-import it.uniroma2.sapr.view.Pilot;
+import it.uniroma2.saprClient.view.Pilot;
 
 public class ManageServiceImpl implements ManageService {
 	String clazz = "MangeServiceImpl";
@@ -28,6 +28,7 @@ public class ManageServiceImpl implements ManageService {
 		} catch (Exception_Exception e) {
 			System.out.println(e.toString());
 			logger.info(String.format("Class:%s-Method:%s:: Call to WebService error[%s]", clazz,method,e.toString()));
+			return false;
 		}
 		
 		logger.info(String.format("Class:%s-Method:%s::END with result[%b]", clazz,method,result));

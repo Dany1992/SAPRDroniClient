@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import it.uniroma2.sapr.service.RequestPilot;
-import it.uniroma2.sapr.view.Pilot;
 import it.uniroma2.saprClient.model.ManageService;
 import it.uniroma2.saprClient.model.ManageServiceImpl;
+import it.uniroma2.saprClient.view.Pilot;
 
 
 @Controller
