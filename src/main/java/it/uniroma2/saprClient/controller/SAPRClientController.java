@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import it.uniroma2.sapr.service.RequestPilot;
+import it.uniroma2.sapr.service.RequestDevice;
 import it.uniroma2.saprClient.model.ManageService;
 import it.uniroma2.saprClient.model.ManageServiceImpl;
 import it.uniroma2.saprClient.view.Pilot;
+import it.uniroma2.saprClient.view.Device;
 
 
 @Controller
@@ -42,6 +44,12 @@ public class SAPRClientController {
 			return "errorAddedPilot";
 		}
 		
+	}
+        
+        @RequestMapping(value = "/addDevice", method = RequestMethod.GET)
+	public ModelAndView addDevice(){
+		//addPilot è il nome della pagin, command è il nome dell'oggetto pilot nella view
+		return new ModelAndView("addDevice", "command", new Device());
 	}
 	
 	
