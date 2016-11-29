@@ -7,7 +7,7 @@
 <title>Error Added Device</title>
 </head>
 <body>
-	<h2>Device ${id}: ${model} - ${producer} error registration</h2>
+	<h2>Device ${id}: ${model} - ${producer} of ${licensepilot} error registration</h2>
 	
 </body>
 </html>

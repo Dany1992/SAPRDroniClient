@@ -7,6 +7,6 @@
 <title>Device Added</title>
 </head>
 <body>
-	<h2>Device ${id}: ${model} - ${producer} registration success!!!</h2>
+	<h2>Device ${id}: ${model} - ${producer} of ${licensepilot} registration success!!!</h2>
 </body>
 </html>
