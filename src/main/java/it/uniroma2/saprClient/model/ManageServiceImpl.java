@@ -11,6 +11,7 @@ import it.uniroma2.sapr.service.RequestDevice;
 import it.uniroma2.sapr.service.SAPRDroni;
 import it.uniroma2.saprClient.view.Pilot;
 import it.uniroma2.saprClient.view.Device;
+import it.uniroma2.saprClient.view.CheckElement;
 
 public class ManageServiceImpl implements ManageService {
 	String clazz = "MangeServiceImpl";
@@ -76,13 +77,13 @@ public class ManageServiceImpl implements ManageService {
 	public Boolean addDevice(Device d) {
 		String method = "addDevice";
 		Boolean result = false;
-		logger.info(String.format("Class:%s-Method:%s::START with dates[%s]", clazz,method,p.toString()));
+		logger.info(String.format("Class:%s-Method:%s::START with dates[%s]", clazz,method,d.toString()));
 		RequestDevice rq = new RequestDevice();
 		rq.setOperation(Operation.ADD);
 		buildMapDevice(d, rq);
 		
 		try {
-			result = service.managerPilot(rq);
+			result = service.managerDevice(rq);
 			logger.info(String.format("Class:%s-Method:%s:: Call to WebService Success", clazz,method,result));
 		} catch (Exception_Exception e) {
 			System.out.println(e.toString());
@@ -99,12 +100,12 @@ public class ManageServiceImpl implements ManageService {
 		String method = "removeDevice";
 		Boolean result = false;
 		logger.info(String.format("Class:%s-Method:%s::START with dates[%s]", clazz,method,p.toString()));
-		RequestPilot rq = new RequestPilot();
+		RequestDevice rq = new RequestDevice();
 		rq.setOperation(Operation.DELETE);
-		buildMapPilot(p, rq);
+		buildMapDevice(p, rq);
 		
 		try {
-			result = service.managerPilot(rq);
+			result = service.managerDevice(rq);
 			logger.info(String.format("Class:%s-Method:%s:: Call to WebService Success", clazz,method,result));
 		} catch (Exception_Exception e) {
 			System.out.println(e.toString());
@@ -135,5 +136,19 @@ public class ManageServiceImpl implements ManageService {
 		
 		logger.info(String.format("Class:%s-Method:%s::END", clazz,method));
 	}
+
+        private void buildMapDevice(Device d, RequestDevice rq) {
+                String method = "buildMapDevice";
+		logger.info(String.format("Class:%s-Method:%s::START with dates", clazz,method));
+		rq.setIdDevice(d.getIdDevice());
+                rq.setModel(d.getModel());
+                rq.setTyper(d.getType());
+                rq.setWeight(d.getWeight());
+                rq.setProducer(d.getProducer());
+                rq.setPilotLicense(d.getPilotLicense());
+                // MANCA checkDevice
+
+		logger.info(String.format("Class:%s-Method:%s::END", clazz,method));
+        }
 
 }

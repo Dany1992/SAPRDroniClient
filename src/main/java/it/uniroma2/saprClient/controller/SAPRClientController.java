@@ -48,10 +48,35 @@ public class SAPRClientController {
         
         @RequestMapping(value = "/addDevice", method = RequestMethod.GET)
 	public ModelAndView addDevice(){
-		//addPilot è il nome della pagin, command è il nome dell'oggetto pilot nella view
+		//addPilot è il nome della pagina, command è il nome dell'oggetto pilot nella view
 		return new ModelAndView("addDevice", "command", new Device());
 	}
 	
-	
+	@RequestMapping(value = "/addedDevice", method = RequestMethod.POST)
+	public String addedDevice(@ModelAttribute("addDevice")Device device, ModelMap model){
+		
+		ManageService ms = new ManageServiceImpl();
+		Boolean result = ms.addDevice(device);
+		System.out.println("result-->:" + result);
+		//Il tipo di ritorno è il nome della pagina view che si vuole mostrare
+                if (result){
+			model.addAttribute("id",device.getIdDevice());
+			model.addAttribute("model",device.getModel());
+			model.addAttribute("license",device.getPilotLicense());
+                        model.addAttribute("producer",device.getProducer());
+                        model.addAttribute("type",device.getType());
+                        model.addAttribute("weight",device.getWeight());
+			return "addedDevice";
+		}else{
+			model.addAttribute("id",device.getIdDevice());
+			model.addAttribute("model",device.getModel());
+			model.addAttribute("license",device.getPilotLicense());
+                        model.addAttribute("producer",device.getProducer());
+                        model.addAttribute("type",device.getType());
+                        model.addAttribute("weight",device.getWeight());
+			return "errorAddedDevice";
+		}
+		
+	}
 	
 }
