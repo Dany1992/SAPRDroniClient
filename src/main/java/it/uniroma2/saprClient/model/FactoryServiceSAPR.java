@@ -28,9 +28,7 @@ public class FactoryServiceSAPR {
 		return saprService;
 	}
 	
-
 	public static synchronized SAPRDroniInterface getService(URL url){
-
 		if (saprService == null){
 			SAPRDroniService sapr = new SAPRDroniService(url);
 			saprService = sapr.getSAPRDroniPort();

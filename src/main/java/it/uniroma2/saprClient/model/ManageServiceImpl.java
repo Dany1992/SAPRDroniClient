@@ -8,7 +8,6 @@ import it.uniroma2.sapr.service.Exception_Exception;
 import it.uniroma2.sapr.service.Operation;
 import it.uniroma2.sapr.service.RequestFlightPlan;
 import it.uniroma2.sapr.service.RequestPilot;
-
 import it.uniroma2.sapr.service.SAPRDroniInterface;
 import it.uniroma2.saprClient.view.FlightPlan;
 import it.uniroma2.saprClient.view.Pilot;
@@ -18,9 +17,7 @@ import java.net.URL;
 public class ManageServiceImpl implements ManageService {
 	String clazz = "MangeServiceImpl";
 	final static Logger logger = Logger.getLogger("CLIENT");
-
 	SAPRDroniInterface service = null;
-	
 	public ManageServiceImpl(){
 		String method = "ManageServiceImpl";
 		URL urlService = null;
@@ -32,7 +29,6 @@ public class ManageServiceImpl implements ManageService {
 		}
 		service = FactoryServiceSAPR.getService(urlService);		
 	}
-
 
 	public Boolean addPilot(Pilot p) {
 		String method = "addPilot";
