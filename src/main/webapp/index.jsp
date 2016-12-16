@@ -7,6 +7,14 @@
 <a href="/SAPRClient/addFlightPlan">Aggiungi piano di volo</a>
 =======
 
+<<<<<<< HEAD
+>>>>>>> master
+=======
+<br>
+<br>
+<a href="/SAPRClient/admin">IndexAdmin</a><br>
+<a href="/SAPRClient/pilot">IndexPilot</a>
+<br>
 >>>>>>> master
 </body>
 </html>
