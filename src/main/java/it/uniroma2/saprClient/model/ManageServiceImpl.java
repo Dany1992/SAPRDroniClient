@@ -6,16 +6,11 @@ import java.util.logging.Logger;
 
 import it.uniroma2.sapr.service.Exception_Exception;
 import it.uniroma2.sapr.service.Operation;
-import it.uniroma2.sapr.service.RequestPilot;
-<<<<<<< HEAD
 import it.uniroma2.sapr.service.RequestDevice;
-import it.uniroma2.sapr.service.SAPRDroni;
-=======
+import it.uniroma2.sapr.service.RequestPilot;
 import it.uniroma2.sapr.service.SAPRDroniInterface;
->>>>>>> master
 import it.uniroma2.saprClient.view.Pilot;
 import it.uniroma2.saprClient.view.Device;
-import it.uniroma2.saprClient.view.CheckElement;
 
 public class ManageServiceImpl implements ManageService {
 	String clazz = "MangeServiceImpl";

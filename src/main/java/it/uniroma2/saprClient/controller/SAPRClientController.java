@@ -61,34 +61,6 @@ public class SAPRClientController {
 		return new ModelAndView("addDevice", "command", new Device());
 	}
 	
-<<<<<<< HEAD
-	@RequestMapping(value = "/addedDevice", method = RequestMethod.POST)
-	public String addedDevice(@ModelAttribute("addDevice")Device device, ModelMap model){
-		
-		ManageService ms = new ManageServiceImpl();
-		Boolean result = ms.addDevice(device);
-		System.out.println("result-->:" + result);
-		//Il tipo di ritorno è il nome della pagina view che si vuole mostrare
-                if (result){
-			model.addAttribute("id",device.getIdDevice());
-			model.addAttribute("model",device.getModel());
-			model.addAttribute("license",device.getPilotLicense());
-                        model.addAttribute("producer",device.getProducer());
-                        model.addAttribute("type",device.getType());
-                        model.addAttribute("weight",device.getWeight());
-			return "addedDevice";
-		}else{
-			model.addAttribute("id",device.getIdDevice());
-			model.addAttribute("model",device.getModel());
-			model.addAttribute("license",device.getPilotLicense());
-                        model.addAttribute("producer",device.getProducer());
-                        model.addAttribute("type",device.getType());
-                        model.addAttribute("weight",device.getWeight());
-			return "errorAddedDevice";
-		}
-		
-	}
-=======
 	@RequestMapping(value = "/removePilot", method = RequestMethod.GET)
 	public ModelAndView removePilot(){
 		//TODO: Qui serve richiamare il webService per farsi dare la lista dei piloti che andrà
@@ -114,7 +86,5 @@ public class SAPRClientController {
 		}
 		
 	}
-	
->>>>>>> master
 	
 }
