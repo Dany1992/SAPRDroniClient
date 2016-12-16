@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+    <a href="/SAPRClient/removeFlightPlan">Delete FlightPlan</a><br>
 </body>
 </html>
