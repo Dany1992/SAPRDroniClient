@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import it.uniroma2.sapr.service.RequestPilot;
 import it.uniroma2.saprClient.model.ManageService;
 import it.uniroma2.saprClient.model.ManageServiceImpl;
+import it.uniroma2.saprClient.view.FlightPlan;
 import it.uniroma2.saprClient.view.Pilot;
 
 
@@ -22,7 +23,7 @@ public class SAPRClientController {
 		//addPilot è il nome della pagin, command è il nome dell'oggetto pilot nella view
 		return new ModelAndView("addPilot", "command", new Pilot());
 	}
-	
+	 
 	@RequestMapping(value = "/addedPilot", method = RequestMethod.POST)
 	public String addedPilot(@ModelAttribute("addPilot")Pilot pilot, ModelMap model){
 		
@@ -40,6 +41,36 @@ public class SAPRClientController {
 			model.addAttribute("surname",pilot.getSurname());
 			model.addAttribute("license",pilot.getLicensepilot());
 			return "errorAddedPilot";
+		}
+		
+	}
+      
+        @RequestMapping(value = "/addFlightPlan", method = RequestMethod.GET)
+	public ModelAndView addFlightPlan(){
+		//addFlightPlan è il nome della pagina, command è il nome dell'oggetto flightPlan nella view
+		return new ModelAndView("addFlightPlan", "command", new FlightPlan());
+	}
+	 
+	@RequestMapping(value = "/addedFlightPlan", method = RequestMethod.POST)
+	public String addedFlightPlan(@ModelAttribute("addFlightPlan")FlightPlan flightPlan, ModelMap model){
+		
+		ManageService ms = new ManageServiceImpl();
+		Boolean result = ms.addFlightPlan(flightPlan);
+		System.out.println("result-->:" + result);
+		if (result){
+			model.addAttribute("destinations",flightPlan.getDestinations());
+                        model.addAttribute("departure",flightPlan.getDeparture());
+                        model.addAttribute("dateDeparture",flightPlan.getDateDeparture());
+                        model.addAttribute("idSapr",flightPlan.getIdSapr());
+
+			//Il tipo di ritorno è il nome della pagina view che si vuole mostrare
+			return "addedFlightPlan";
+		}else{
+			model.addAttribute("destinations",flightPlan.getDestinations());
+                        model.addAttribute("departure",flightPlan.getDeparture());
+                        model.addAttribute("dateDeparture",flightPlan.getDateDeparture());
+                        model.addAttribute("idSapr",flightPlan.getIdSapr());
+			return "errorAddedFlightPlan";
 		}
 		
 	}
