@@ -7,8 +7,12 @@ import java.util.logging.Logger;
 import it.uniroma2.sapr.service.Exception_Exception;
 import it.uniroma2.sapr.service.Operation;
 import it.uniroma2.sapr.service.RequestPilot;
+<<<<<<< HEAD
 import it.uniroma2.sapr.service.RequestDevice;
 import it.uniroma2.sapr.service.SAPRDroni;
+=======
+import it.uniroma2.sapr.service.SAPRDroniInterface;
+>>>>>>> master
 import it.uniroma2.saprClient.view.Pilot;
 import it.uniroma2.saprClient.view.Device;
 import it.uniroma2.saprClient.view.CheckElement;
@@ -16,13 +20,13 @@ import it.uniroma2.saprClient.view.CheckElement;
 public class ManageServiceImpl implements ManageService {
 	String clazz = "MangeServiceImpl";
 	final static Logger logger = Logger.getLogger("CLIENT");
-	SAPRDroni service = null;
+	SAPRDroniInterface service = null;
 	
 	public ManageServiceImpl(){
 		String method = "ManageServiceImpl" ;
 		URL urlService = null;
 		try {
-			urlService = new URL("http://188.166.44.110:8080/SAPR/SAPRService?wsdl");
+			urlService = new URL("http://localhost:9999/ws/sapr?wsdl");
 		} catch (MalformedURLException e) {
 			logger.info(String.format("Class:%s-Method:%s::Error url[%s]", clazz,method,e.toString()));
 			e.printStackTrace();
@@ -59,7 +63,7 @@ public class ManageServiceImpl implements ManageService {
 		logger.info(String.format("Class:%s-Method:%s::START with dates[%s]", clazz,method,p.toString()));
 		RequestPilot rq = new RequestPilot();
 		rq.setOperation(Operation.DELETE);
-		buildMapPilot(p, rq);
+		rq.setPilotLicense(p.getLicensepilot());
 		
 		try {
 			result = service.managerPilot(rq);

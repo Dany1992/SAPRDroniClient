@@ -9,24 +9,25 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java per requestDevice complex type.
+ * <p>Classe Java per responseDevice complex type.
  * 
  * <p>Il seguente frammento di schema specifica il contenuto previsto contenuto in questa classe.
  * 
  * <pre>
- * &lt;complexType name="requestDevice">
+ * &lt;complexType name="responseDevice">
  *   &lt;complexContent>
- *     &lt;extension base="{http://service.sapr.uniroma2.it/}request">
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="idDevice" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="model" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="typer" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="type" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="weight" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="producer" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="pilotLicense" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="chekDevice" type="{http://service.sapr.uniroma2.it/}requestCheckElement" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="checkDevice" type="{http://service.sapr.uniroma2.it/}responseCheckElement" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="active" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
- *     &lt;/extension>
+ *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
@@ -34,26 +35,26 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "requestDevice", propOrder = {
+@XmlType(name = "responseDevice", propOrder = {
     "idDevice",
     "model",
-    "typer",
+    "type",
     "weight",
     "producer",
     "pilotLicense",
-    "chekDevice"
+    "checkDevice",
+    "active"
 })
-public class RequestDevice
-    extends Request
-{
+public class ResponseDevice {
 
     protected int idDevice;
     protected String model;
-    protected String typer;
+    protected String type;
     protected int weight;
     protected String producer;
     protected String pilotLicense;
-    protected List<RequestCheckElement> chekDevice;
+    protected List<ResponseCheckElement> checkDevice;
+    protected int active;
 
     /**
      * Recupera il valore della proprietà idDevice.
@@ -96,27 +97,27 @@ public class RequestDevice
     }
 
     /**
-     * Recupera il valore della proprietà typer.
+     * Recupera il valore della proprietà type.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getTyper() {
-        return typer;
+    public String getType() {
+        return type;
     }
 
     /**
-     * Imposta il valore della proprietà typer.
+     * Imposta il valore della proprietà type.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setTyper(String value) {
-        this.typer = value;
+    public void setType(String value) {
+        this.type = value;
     }
 
     /**
@@ -184,32 +185,48 @@ public class RequestDevice
     }
 
     /**
-     * Gets the value of the chekDevice property.
+     * Gets the value of the checkDevice property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the chekDevice property.
+     * This is why there is not a <CODE>set</CODE> method for the checkDevice property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getChekDevice().add(newItem);
+     *    getCheckDevice().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link RequestCheckElement }
+     * {@link ResponseCheckElement }
      * 
      * 
      */
-    public List<RequestCheckElement> getChekDevice() {
-        if (chekDevice == null) {
-            chekDevice = new ArrayList<RequestCheckElement>();
+    public List<ResponseCheckElement> getCheckDevice() {
+        if (checkDevice == null) {
+            checkDevice = new ArrayList<ResponseCheckElement>();
         }
-        return this.chekDevice;
+        return this.checkDevice;
+    }
+
+    /**
+     * Recupera il valore della proprietà active.
+     * 
+     */
+    public int getActive() {
+        return active;
+    }
+
+    /**
+     * Imposta il valore della proprietà active.
+     * 
+     */
+    public void setActive(int value) {
+        this.active = value;
     }
 
 }

@@ -9,16 +9,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java per requestSAPR complex type.
+ * <p>Classe Java per responseSapr complex type.
  * 
  * <p>Il seguente frammento di schema specifica il contenuto previsto contenuto in questa classe.
  * 
  * <pre>
- * &lt;complexType name="requestSAPR">
+ * &lt;complexType name="responseSapr">
  *   &lt;complexContent>
- *     &lt;extension base="{http://service.sapr.uniroma2.it/}request">
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="idSapr" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="idSapr" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="model" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="producer" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="weight" type="{http://www.w3.org/2001/XMLSchema}int"/>
@@ -27,9 +27,10 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="maxDistance" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="maxHeight" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="pilotLicense" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="checkSapr" type="{http://service.sapr.uniroma2.it/}requestCheckElement" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="checkSapr" type="{http://service.sapr.uniroma2.it/}responseCheckElement" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="active" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
- *     &lt;/extension>
+ *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
@@ -37,7 +38,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "requestSAPR", propOrder = {
+@XmlType(name = "responseSapr", propOrder = {
     "idSapr",
     "model",
     "producer",
@@ -47,13 +48,12 @@ import javax.xml.bind.annotation.XmlType;
     "maxDistance",
     "maxHeight",
     "pilotLicense",
-    "checkSapr"
+    "checkSapr",
+    "active"
 })
-public class RequestSAPR
-    extends Request
-{
+public class ResponseSapr {
 
-    protected long idSapr;
+    protected int idSapr;
     protected String model;
     protected String producer;
     protected int weight;
@@ -62,13 +62,14 @@ public class RequestSAPR
     protected int maxDistance;
     protected int maxHeight;
     protected String pilotLicense;
-    protected List<RequestCheckElement> checkSapr;
+    protected List<ResponseCheckElement> checkSapr;
+    protected int active;
 
     /**
      * Recupera il valore della proprietà idSapr.
      * 
      */
-    public long getIdSapr() {
+    public int getIdSapr() {
         return idSapr;
     }
 
@@ -76,7 +77,7 @@ public class RequestSAPR
      * Imposta il valore della proprietà idSapr.
      * 
      */
-    public void setIdSapr(long value) {
+    public void setIdSapr(int value) {
         this.idSapr = value;
     }
 
@@ -258,15 +259,31 @@ public class RequestSAPR
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link RequestCheckElement }
+     * {@link ResponseCheckElement }
      * 
      * 
      */
-    public List<RequestCheckElement> getCheckSapr() {
+    public List<ResponseCheckElement> getCheckSapr() {
         if (checkSapr == null) {
-            checkSapr = new ArrayList<RequestCheckElement>();
+            checkSapr = new ArrayList<ResponseCheckElement>();
         }
         return this.checkSapr;
+    }
+
+    /**
+     * Recupera il valore della proprietà active.
+     * 
+     */
+    public int getActive() {
+        return active;
+    }
+
+    /**
+     * Imposta il valore della proprietà active.
+     * 
+     */
+    public void setActive(int value) {
+        this.active = value;
     }
 
 }
