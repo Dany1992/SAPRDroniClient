@@ -24,6 +24,16 @@ public class SAPRClientController {
 	private static String clazz = "SAPRClientController";
 	private static Logger log = Logger.getRootLogger();
 	
+	@RequestMapping(value = "/pilot", method = RequestMethod.GET)
+	public String redirectAdmin() {
+		return "pilot";
+	}
+	
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public String redirectPilot() {
+		return "admin";
+	}	
+	
 	@RequestMapping(value = "/addPilot", method = RequestMethod.GET)
 	public ModelAndView addPilot(){
 		//addPilot è il nome della pagin, command è il nome dell'oggetto pilot nella view
@@ -52,6 +62,7 @@ public class SAPRClientController {
 		}
 		
 	}
+
 	
 	@RequestMapping(value = "/removePilot", method = RequestMethod.GET)
 	public ModelAndView removePilot(){
