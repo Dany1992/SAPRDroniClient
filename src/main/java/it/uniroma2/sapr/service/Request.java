@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="operation" type="{http://service.sapr.uniroma2.it/}operation" minOccurs="0"/>
+ *         &lt;element name="opzione" type="{http://service.sapr.uniroma2.it/}operation" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,19 +30,22 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "request", propOrder = {
-    "operation"
+    "operation",
+    "opzione"
 })
 @XmlSeeAlso({
-    RequestPilot.class,
     RequestSAPR.class,
     RequestDevice.class,
-    RequestNote.class,
-    RequestFlightPlan.class
+    RequestFlightPlan.class,
+    RequestPilot.class,
+    RequestNote.class
 })
 public abstract class Request {
 
     @XmlSchemaType(name = "string")
     protected Operation operation;
+    @XmlSchemaType(name = "string")
+    protected Operation opzione;
 
     /**
      * Recupera il valore della proprietà operation.
@@ -65,6 +69,30 @@ public abstract class Request {
      */
     public void setOperation(Operation value) {
         this.operation = value;
+    }
+
+    /**
+     * Recupera il valore della proprietà opzione.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Operation }
+     *     
+     */
+    public Operation getOpzione() {
+        return opzione;
+    }
+
+    /**
+     * Imposta il valore della proprietà opzione.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Operation }
+     *     
+     */
+    public void setOpzione(Operation value) {
+        this.opzione = value;
     }
 
 }

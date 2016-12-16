@@ -65,11 +65,11 @@ public class SAPRDroniService
     /**
      * 
      * @return
-     *     returns SAPRDroni
+     *     returns SAPRDroniInterface
      */
     @WebEndpoint(name = "SAPRDroniPort")
-    public SAPRDroni getSAPRDroniPort() {
-        return super.getPort(new QName("http://service.sapr.uniroma2.it/", "SAPRDroniPort"), SAPRDroni.class);
+    public SAPRDroniInterface getSAPRDroniPort() {
+        return super.getPort(new QName("http://service.sapr.uniroma2.it/", "SAPRDroniPort"), SAPRDroniInterface.class);
     }
 
     /**
@@ -77,11 +77,11 @@ public class SAPRDroniService
      * @param features
      *     A list of {@link javax.xml.ws.WebServiceFeature} to configure on the proxy.  Supported features not in the <code>features</code> parameter will have their default values.
      * @return
-     *     returns SAPRDroni
+     *     returns SAPRDroniInterface
      */
     @WebEndpoint(name = "SAPRDroniPort")
-    public SAPRDroni getSAPRDroniPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://service.sapr.uniroma2.it/", "SAPRDroniPort"), SAPRDroni.class, features);
+    public SAPRDroniInterface getSAPRDroniPort(WebServiceFeature... features) {
+        return super.getPort(new QName("http://service.sapr.uniroma2.it/", "SAPRDroniPort"), SAPRDroniInterface.class, features);
     }
 
     private static URL __getWsdlLocation() {
