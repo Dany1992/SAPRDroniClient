@@ -20,7 +20,7 @@ public class ManageServiceImpl implements ManageService {
 	final static Logger logger = Logger.getLogger("CLIENT");
 	SAPRDroniInterface service = null;
 	public ManageServiceImpl(){
-		String method = "ManageServiceImpl" ;
+		String method = "ManageServiceImpl";
 		URL urlService = null;
 		try {
 			urlService = new URL("http://localhost:9999/ws/sapr?wsdl");
