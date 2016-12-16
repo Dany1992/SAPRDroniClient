@@ -9,14 +9,14 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java per requestFlightPlan complex type.
+ * <p>Classe Java per responseFlightPlan complex type.
  * 
  * <p>Il seguente frammento di schema specifica il contenuto previsto contenuto in questa classe.
  * 
  * <pre>
- * &lt;complexType name="requestFlightPlan">
+ * &lt;complexType name="responseFlightPlan">
  *   &lt;complexContent>
- *     &lt;extension base="{http://service.sapr.uniroma2.it/}request">
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="destinations" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="departure" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="devices" type="{http://service.sapr.uniroma2.it/}device" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="pilotLicense" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
- *     &lt;/extension>
+ *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "requestFlightPlan", propOrder = {
+@XmlType(name = "responseFlightPlan", propOrder = {
     "destinations",
     "departure",
     "dateDeparture",
@@ -47,9 +47,7 @@ import javax.xml.bind.annotation.XmlType;
     "devices",
     "pilotLicense"
 })
-public class RequestFlightPlan
-    extends Request
-{
+public class ResponseFlightPlan {
 
     protected String destinations;
     protected String departure;
@@ -264,10 +262,6 @@ public class RequestFlightPlan
      */
     public void setPilotLicense(String value) {
         this.pilotLicense = value;
-    }
-
-    public void setDevices(List<Device> devices) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

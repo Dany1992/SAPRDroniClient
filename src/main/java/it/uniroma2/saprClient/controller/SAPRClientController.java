@@ -1,5 +1,6 @@
 package it.uniroma2.saprClient.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,10 +14,16 @@ import it.uniroma2.saprClient.model.ManageServiceImpl;
 import it.uniroma2.saprClient.view.FlightPlan;
 import it.uniroma2.saprClient.view.Pilot;
 
-
+/**
+ * Questa classe è il controllere dell' MVC. Ogni richiesta deve passare per questo controller
+ * 
+ * @author Danilo Butrico
+ *
+ */
 @Controller
 public class SAPRClientController {
-	
+	private static String clazz = "SAPRClientController";
+	private static Logger log = Logger.getRootLogger();
 	
 	@RequestMapping(value = "/addPilot", method = RequestMethod.GET)
 	public ModelAndView addPilot(){
@@ -26,10 +33,12 @@ public class SAPRClientController {
 	 
 	@RequestMapping(value = "/addedPilot", method = RequestMethod.POST)
 	public String addedPilot(@ModelAttribute("addPilot")Pilot pilot, ModelMap model){
-		
+		String method = "addedPilot";
+		log.debug(String.format("%s-%s:: Start", clazz,method));
 		ManageService ms = new ManageServiceImpl();
 		Boolean result = ms.addPilot(pilot);
 		System.out.println("result-->:" + result);
+//		log.debug(String.format("%s-%s:: Result [%b]", clazz,method,result));
 		if (result){
 			model.addAttribute("name",pilot.getName());
 			model.addAttribute("surname",pilot.getSurname());
@@ -75,6 +84,31 @@ public class SAPRClientController {
 		
 	}
 	
+	@RequestMapping(value = "/removePilot", method = RequestMethod.GET)
+	public ModelAndView removePilot(){
+		//TODO: Qui serve richiamare il webService per farsi dare la lista dei piloti che andrà
+		//messa al posto di new Pilot()
+		return new ModelAndView("removePilot", "command", new Pilot());
+	}
+	
+	@RequestMapping(value = "/removedPilot", method = RequestMethod.POST)
+	public String removedPilot(@ModelAttribute("removePilot")Pilot pilot, ModelMap model){
+		String method = "removedPilot";
+		log.debug(String.format("%s-%s:: Start", clazz,method));
+		ManageService ms = new ManageServiceImpl();
+		Boolean result = ms.removePilot(pilot);
+		System.out.println("result-->:" + result);
+		log.debug(String.format("%s-%s:: Result [%b]", clazz,method,result));
+		if (result){
+			//Il tipo di ritorno è il nome della pagina view che si vuole mostrare
+			log.debug(String.format("%s-%s:: End", clazz,method));
+			return "removedPilot";
+		}else{
+			log.debug(String.format("%s-%s:: End", clazz,method));
+			return "errorRemovedPilot";
+		}
+		
+	}
 	
 	
 }

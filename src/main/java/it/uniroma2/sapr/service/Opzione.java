@@ -6,36 +6,34 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java per operation.
+ * <p>Classe Java per opzione.
  * 
  * <p>Il seguente frammento di schema specifica il contenuto previsto contenuto in questa classe.
  * <p>
  * <pre>
- * &lt;simpleType name="operation">
+ * &lt;simpleType name="opzione">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="ADD"/>
- *     &lt;enumeration value="DELETE"/>
- *     &lt;enumeration value="UPDATE"/>
- *     &lt;enumeration value="ENABLE"/>
+ *     &lt;enumeration value="ENABLED"/>
+ *     &lt;enumeration value="DISABLED"/>
+ *     &lt;enumeration value="ALL"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "operation")
+@XmlType(name = "opzione")
 @XmlEnum
-public enum Operation {
+public enum Opzione {
 
-    ADD,
-    DELETE,
-    UPDATE,
-    ENABLE;
+    ENABLED,
+    DISABLED,
+    ALL;
 
     public String value() {
         return name();
     }
 
-    public static Operation fromValue(String v) {
+    public static Opzione fromValue(String v) {
         return valueOf(v);
     }
 

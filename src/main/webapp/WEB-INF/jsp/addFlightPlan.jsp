@@ -35,13 +35,13 @@
     <tr>
         <td>IdSapr:<input type="text" name="idSapr"><td>
     </tr>
-	<tr>
+    <tr>
         <td>IdNote:<input type="date-time" name="idNote"><td>
-        </tr>
-	<tr>
+    </tr>
+    <tr>
         <td>Devices:<input type="text" name="devices"><td>
     </tr>
-	<tr>
+    <tr>
         <td>PilotLicense:<input type="text" name="pilotLicense"><td>
     </tr>
     <tr>

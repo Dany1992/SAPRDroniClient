@@ -2,7 +2,7 @@ package it.uniroma2.saprClient.model;
 
 import java.net.URL;
 
-import it.uniroma2.sapr.service.SAPRDroni;
+import it.uniroma2.sapr.service.SAPRDroniInterface;
 import it.uniroma2.sapr.service.SAPRDroniService;
 
 /**
@@ -13,13 +13,13 @@ import it.uniroma2.sapr.service.SAPRDroniService;
  */
 public class FactoryServiceSAPR {
 	
-	private static SAPRDroni saprService = null;
+	private static SAPRDroniInterface saprService = null;
 	
 	private FactoryServiceSAPR(){
 		
 	}
 	
-	public static synchronized SAPRDroni getService(){
+	public static synchronized SAPRDroniInterface getService(){
 		
 		if (saprService == null){
 			SAPRDroniService sapr = new SAPRDroniService();
@@ -28,7 +28,9 @@ public class FactoryServiceSAPR {
 		return saprService;
 	}
 	
-	public static synchronized SAPRDroni getService(URL url){
+
+	public static synchronized SAPRDroniInterface getService(URL url){
+
 		if (saprService == null){
 			SAPRDroniService sapr = new SAPRDroniService(url);
 			saprService = sapr.getSAPRDroniPort();
