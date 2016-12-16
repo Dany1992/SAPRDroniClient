@@ -9,6 +9,14 @@
 =======
 <a href="/SAPRClient/removePilot">Rimuovi Pilota</a>
 
+<<<<<<< HEAD
+>>>>>>> master
+=======
+<br>
+<br>
+<a href="/SAPRClient/admin">IndexAdmin</a><br>
+<a href="/SAPRClient/pilot">IndexPilot</a>
+<br>
 >>>>>>> master
 </body>
 </html>
