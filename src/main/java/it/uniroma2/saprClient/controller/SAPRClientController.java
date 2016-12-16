@@ -109,6 +109,33 @@ public class SAPRClientController {
 		}
 		
 	}
+        
+        @RequestMapping(value = "/removeFlightPlan", method = RequestMethod.GET)
+	public ModelAndView removeFlightPlan(){
+		//TODO: Qui serve richiamare il webService per farsi dare la lista dei piloti che andrà
+		//messa al posto di new Pilot()
+		return new ModelAndView("removeFlightPlan", "command", new FlightPlan());
+	}
+	
+	@RequestMapping(value = "/removedFlightPlan", method = RequestMethod.POST)
+	public String removedFlightPlan(@ModelAttribute("removeFlightPlan")FlightPlan flightPlan, ModelMap model){
+		String method = "removedFlightPlan";
+		log.debug(String.format("%s-%s:: Start", clazz,method));
+		ManageService ms = new ManageServiceImpl();
+		Boolean result = ms.removeFlightPlan(flightPlan);
+		System.out.println("result-->:" + result);
+		log.debug(String.format("%s-%s:: Result [%b]", clazz,method,result));
+		if (result){
+			//Il tipo di ritorno è il nome della pagina view che si vuole mostrare
+			log.debug(String.format("%s-%s:: End", clazz,method));
+			return "removedFlightPlan";
+		}else{
+			log.debug(String.format("%s-%s:: End", clazz,method));
+			return "errorRemovedFlightPlan";
+		}
+		
+	}
+        
 	
 	
 }

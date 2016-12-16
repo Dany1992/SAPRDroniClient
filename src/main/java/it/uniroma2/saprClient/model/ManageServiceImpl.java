@@ -8,12 +8,9 @@ import it.uniroma2.sapr.service.Exception_Exception;
 import it.uniroma2.sapr.service.Operation;
 import it.uniroma2.sapr.service.RequestFlightPlan;
 import it.uniroma2.sapr.service.RequestPilot;
-<<<<<<< HEAD
 import it.uniroma2.sapr.service.SAPRDroniInterface;
-=======
-import it.uniroma2.sapr.service.SAPRDroni;
+
 import it.uniroma2.saprClient.view.FlightPlan;
->>>>>>> origin/dindi-branch
 import it.uniroma2.saprClient.view.Pilot;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -21,31 +18,20 @@ import java.net.URL;
 public class ManageServiceImpl implements ManageService {
 	String clazz = "MangeServiceImpl";
 	final static Logger logger = Logger.getLogger("CLIENT");
-<<<<<<< HEAD
 	SAPRDroniInterface service = null;
-	
-=======
-	SAPRDroni service = null;
->>>>>>> origin/dindi-branch
 	public ManageServiceImpl(){
 		String method = "ManageServiceImpl" ;
 		URL urlService = null;
 		try {
-<<<<<<< HEAD
 			urlService = new URL("http://localhost:9999/ws/sapr?wsdl");
-=======
-			urlService = new URL("http://188.166.44.110:8080/SAPR/SAPRService?wsdl");
->>>>>>> origin/dindi-branch
+
 		} catch (MalformedURLException e) {
 			logger.info(String.format("Class:%s-Method:%s::Error url[%s]", clazz,method,e.toString()));
 			e.printStackTrace();
 		}
 		service = FactoryServiceSAPR.getService(urlService);		
 	}
-<<<<<<< HEAD
-	
-=======
->>>>>>> origin/dindi-branch
+
 	
 	public Boolean addPilot(Pilot p) {
 		String method = "addPilot";
