@@ -1,4 +1,5 @@
 package it.uniroma2.saprClient.model;
+
 import it.uniroma2.sapr.service.Opzione;
 import it.uniroma2.sapr.service.ResponseFlightPlan;
 import it.uniroma2.sapr.service.ResponseSapr;
