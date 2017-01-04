@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +36,7 @@
         <tr>
             <td>CheckElement:<input type="text" name="check2"><td>
         </tr>
-        
+
         <tr>
             <td colspan="2">
                 <input type="submit" value="Submit"/>
@@ -43,5 +44,10 @@
         </tr>
     </table>  
 </form:form>
+<c:forEach var="listValue" items="${command.checkDevice}">
+         ${listValue.model},${listValue.type},${listValue.weight},${listValue.producer}
+       <br>
+</c:forEach>
+
 </body>
 </html>

@@ -80,7 +80,10 @@ public class SAPRClientController {
             //addDevice è il nome della pagina, command è il nome dell'oggetto device nella view
             return new ModelAndView("addDevice", "command", new Device());
 	}
+
         
+
+
 	@RequestMapping(value = "/addedDevice", method = RequestMethod.POST)
 	public String addedDevice(HttpServletRequest request, ModelMap model){
             String method = "addedDevice";
@@ -89,8 +92,8 @@ public class SAPRClientController {
             System.out.println("ENTRO NELLA POST");
 
             ManageService ms = new ManageServiceImpl();
-
             Device device = new Device();
+            
             ArrayList<CheckElement> arr_ck = new ArrayList<CheckElement>();
             CheckElement check = new CheckElement();
             // si fa prima la prova su due elementi poi si farà il ciclo
@@ -106,15 +109,18 @@ public class SAPRClientController {
             device.setType(request.getParameter("type"));
             device.setWeight(Integer.parseInt(request.getParameter("weight")));
             device.setCheckDevice(arr_ck);
-
+        
+            
             Boolean result = ms.addDevice(device);
+        
+        
             System.out.println("Riempito tutto");
             if(result)
                 return "addedDevice";
             else return "errorAddedDevice";
 	}
 
-        
+
 	public String addedDeviceOld(@ModelAttribute("addDevice")Device device, ModelMap model){
             String method = "addedDevice";
             log.debug(String.format("%s-%s:: Start", clazz,method));
@@ -266,9 +272,9 @@ public class SAPRClientController {
         
         @RequestMapping(value = "/removeFlightPlan", method = RequestMethod.GET)
 	public ModelAndView removeFlightPlan(){
-		//TODO: Qui serve richiamare il webService per farsi dare la lista dei piloti che andrà
-		//messa al posto di new Pilot()
-		return new ModelAndView("removeFlightPlan", "command", new FlightPlan());
+            //TODO: Qui serve richiamare il webService per farsi dare la lista dei piloti che andrà
+            //messa al posto di new Pilot()
+            return new ModelAndView("removeFlightPlan", "command", new FlightPlan());
 	}
 	
 	@RequestMapping(value = "/removedFlightPlan", method = RequestMethod.POST)
