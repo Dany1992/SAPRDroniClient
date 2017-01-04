@@ -4,11 +4,6 @@
     Author     : pierfrancescotommasino
 --%>
 
-
-<%@page import="java.lang.Integer"%>
-<%@page import="it.uniroma2.saprClient.view.FlightPlanWrapper"%>
-<%@page import="it.uniroma2.sapr.service.ResponseSapr"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -26,36 +21,31 @@
     <table class="col-xs-6">
     <h2>Insert Flight Plan Datas</h2>
     <tr>
-        <td>Destinations:<input type="text" name="destinations"><td>
+        <td>Destinations:<input type="text" name="flight.destinations"><td>
     </tr>
     <tr>
-        <td>Departure:<input type="text" name=departure><td>
+        <td>Departure:<input type="text" name="flight.departure"><td>
     </tr>
     <tr>
-        <td>DateDeparture:<input type="text" name="dateDeparture"><td>
+        <td>DateDeparture:<input type="text" name="flight.dateDeparture"><td>
     </tr>
     <tr>
-        <td>TimeDeparture:<input type="text" name="timeDeparture"><td>
+        <td>TimeDeparture:<input type="text" name="flight.timeDeparture"><td>
     </tr>
     <tr>
-        <td>NowArriving:<input type="text" name="nowArriving"><td>
+        <td>NowArriving:<input type="text" name="flight.nowArriving"><td>
     </tr>
     <tr>
-        <td>IdNote:<input type="number" name="idNote"><td>
+        <td>IdNote:<input type="number" name="flight.idNote"><td>
     </tr>
     <tr>
-        <td>PilotLicense:<input type="text" name="pilotLicense"><td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <input type="submit" value="Submit"/>
-        </td>
+        <td>PilotLicense:<input type="text" name="flight.pilotLicense"><td>
     </tr>
 </table>
 <div id="sapr" class="col-xs-6">
-    <h2>Choose a Sapr</h2>
+    <h2>Choose a Sapr ${model.flight.destinations}</h2>
     <c:forEach var="listValue" items="${model.saprsOfPilot}">
-        <input type="radio" name="idSapr" value="${listValue.idSapr}">
+        <input type="radio" name="flight.idSapr" value="${listValue.idSapr}">
              ${listValue.producer},${listValue.model},${listValue.weight},${listValue.heavyweight},${listValue.battery},${listValue.maxDistance},${listValue.maxHeight}
         <br>
     </c:forEach>
@@ -63,10 +53,11 @@
 <div id="device" class="col-xs-6">
     <h2>Choose the Devices</h2>
         <c:forEach var="listValue" items="${model.devicesOfPilot}">
-            <input type="checkbox" name="devices" value="${listValue.idDevice}">
+            <input type="checkbox" name="flight.devices" value="${listValue.idDevice}">
                  ${listValue.model},${listValue.type},${listValue.weight},${listValue.producer}
                <br>
         </c:forEach>
 </div>
+<input type="submit" value="Submit"/>
 </form:form>
 

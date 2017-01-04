@@ -236,6 +236,7 @@ public class RequestFlightPlan
      * {@link Integer }
      * 
      * 
+     * @return 
      */
     public ArrayList<Integer> getDevices() {
         if (devices == null) {
