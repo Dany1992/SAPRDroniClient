@@ -7,32 +7,25 @@ import java.util.logging.Logger;
 import it.uniroma2.sapr.service.Exception_Exception;
 import it.uniroma2.sapr.service.Operation;
 import it.uniroma2.sapr.service.Opzione;
-<<<<<<< HEAD
 import it.uniroma2.sapr.service.RequestCheckElement;
 import it.uniroma2.sapr.service.RequestDevice;
-import it.uniroma2.sapr.service.RequestPilot;
-import it.uniroma2.sapr.service.ResponseDevice;
-=======
 import it.uniroma2.sapr.service.RequestFlightPlan;
 import it.uniroma2.sapr.service.RequestPilot;
 import it.uniroma2.sapr.service.ResponseDevice;
 import it.uniroma2.sapr.service.ResponseFlightPlan;
 import it.uniroma2.sapr.service.ResponseSapr;
->>>>>>> master
 import it.uniroma2.sapr.service.SAPRDroniInterface;
 import it.uniroma2.saprClient.view.FlightPlan;
 import it.uniroma2.saprClient.view.FlightPlanWrapper;
 import it.uniroma2.saprClient.view.Pilot;
-<<<<<<< HEAD
 import it.uniroma2.saprClient.view.Device;
 import java.util.Iterator;
 import java.util.List;
 import javafx.beans.binding.ListBinding;
-=======
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
->>>>>>> master
+
 
 public class ManageServiceImpl implements ManageService {
 	String clazz = "MangeServiceImpl";
@@ -189,7 +182,8 @@ public class ManageServiceImpl implements ManageService {
 	}
 
 
-<<<<<<< HEAD
+
+
         private void buildMapDevice(Device d, RequestDevice rq) {
                 String method = "buildMapDevice";
 		logger.info(String.format("Class:%s-Method:%s::START with dates", clazz,method));
@@ -209,7 +203,7 @@ public class ManageServiceImpl implements ManageService {
 		logger.info(String.format("Class:%s-Method:%s::END", clazz,method));
         }
 
-=======
+
 	public Boolean removeFlightPlan(FlightPlan p) {
 		String method = "removeFlightPlan";
 		Boolean result = false;
@@ -305,5 +299,12 @@ public class ManageServiceImpl implements ManageService {
 		flight.setFlight(willFlight);
 		return flight;
 	}
->>>>>>> master
+
+    public Boolean addDevice(it.uniroma2.sapr.service.Device device) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Boolean removeDevice(it.uniroma2.sapr.service.Device device) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

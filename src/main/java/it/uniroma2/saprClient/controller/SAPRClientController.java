@@ -1,5 +1,6 @@
 package it.uniroma2.saprClient.controller;
 
+import it.uniroma2.sapr.service.CheckElement;
 import it.uniroma2.sapr.service.Device;
 import it.uniroma2.sapr.service.Opzione;
 import org.apache.log4j.Logger;
@@ -11,17 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import it.uniroma2.sapr.service.RequestPilot;
-<<<<<<< HEAD
-import it.uniroma2.sapr.service.RequestDevice;
 import it.uniroma2.sapr.service.ResponseDevice;
-import it.uniroma2.saprClient.model.ManageService;
-import it.uniroma2.saprClient.model.ManageServiceImpl;
-import it.uniroma2.saprClient.view.CheckElement;
-import it.uniroma2.saprClient.view.Pilot;
-import it.uniroma2.saprClient.view.Device;
-import java.util.ArrayList;
-import java.util.List;
-=======
 import it.uniroma2.sapr.service.ResponseFlightPlan;
 import it.uniroma2.sapr.service.ResponseSapr;
 import it.uniroma2.saprClient.model.ManageService;
@@ -30,8 +21,8 @@ import it.uniroma2.saprClient.view.FlightPlan;
 import it.uniroma2.saprClient.view.FlightPlanWrapper;
 import it.uniroma2.saprClient.view.Pilot;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
->>>>>>> master
 
 import javax.servlet.http.HttpServletRequest;
 /**
@@ -83,7 +74,6 @@ public class SAPRClientController {
 		}
 		
 	}
-<<<<<<< HEAD
 
         @RequestMapping(value = "/addDevice", method = RequestMethod.GET)
 	public ModelAndView addDevice(){
@@ -178,10 +168,8 @@ public class SAPRClientController {
                     log.debug(String.format("%s-%s:: End", clazz,method));
                     return "errorRemovedDevice";
             }
-		
-	}     
-        
-=======
+
+	}
       
         @RequestMapping(value = "/addFlightPlan", method = RequestMethod.GET)
 	public ModelAndView addFlightPlan(HttpServletRequest servlet){
@@ -249,7 +237,7 @@ public class SAPRClientController {
 		
 	}
         
->>>>>>> master
+
 	@RequestMapping(value = "/removePilot", method = RequestMethod.GET)
 	public ModelAndView removePilot(){
 		//TODO: Qui serve richiamare il webService per farsi dare la lista dei piloti che andrà
@@ -283,8 +271,6 @@ public class SAPRClientController {
 		return new ModelAndView("removeFlightPlan", "command", new FlightPlan());
 	}
 	
-<<<<<<< HEAD
-=======
 	@RequestMapping(value = "/removedFlightPlan", method = RequestMethod.POST)
 	public String removedFlightPlan(@ModelAttribute("removeFlightPlan")FlightPlan flightPlan, ModelMap model){
 		String method = "removedFlightPlan";
@@ -303,6 +289,5 @@ public class SAPRClientController {
 		}
 		
 	}
-        
->>>>>>> master
+
 }
