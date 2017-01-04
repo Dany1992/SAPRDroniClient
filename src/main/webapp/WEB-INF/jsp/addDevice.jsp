@@ -18,7 +18,7 @@
             <td>Model:<input type="text" name="model"><td>
         </tr>
         <tr>
-            <td>Pilot License:<input type="text" name="pilotlicense"><td>
+            <td>Pilot License:<input type="text" name="pilotLicense"><td>
         </tr>
         <tr>
             <td>Producer:<input type="text" name="producer"><td>
@@ -29,7 +29,13 @@
         <tr>
             <td>Weight:<input type="text" name="weight"><td>
         </tr>
-
+        <tr>
+            <td>CheckElement:<input type="text" name="check1"><td>
+        </tr>
+        <tr>
+            <td>CheckElement:<input type="text" name="check2"><td>
+        </tr>
+        
         <tr>
             <td colspan="2">
                 <input type="submit" value="Submit"/>

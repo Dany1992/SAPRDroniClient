@@ -8,6 +8,7 @@
 </head>
 <body>
 	<h2>Device ${id}: ${model} - ${producer} of ${licensepilot} error registration</h2>
+        <p>mi dispiace :(</p>
 	
 </body>
 </html>

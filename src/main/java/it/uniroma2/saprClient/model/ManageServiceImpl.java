@@ -6,11 +6,17 @@ import java.util.logging.Logger;
 
 import it.uniroma2.sapr.service.Exception_Exception;
 import it.uniroma2.sapr.service.Operation;
+import it.uniroma2.sapr.service.Opzione;
+import it.uniroma2.sapr.service.RequestCheckElement;
 import it.uniroma2.sapr.service.RequestDevice;
 import it.uniroma2.sapr.service.RequestPilot;
+import it.uniroma2.sapr.service.ResponseDevice;
 import it.uniroma2.sapr.service.SAPRDroniInterface;
 import it.uniroma2.saprClient.view.Pilot;
 import it.uniroma2.saprClient.view.Device;
+import java.util.Iterator;
+import java.util.List;
+import javafx.beans.binding.ListBinding;
 
 public class ManageServiceImpl implements ManageService {
 	String clazz = "MangeServiceImpl";
@@ -93,15 +99,27 @@ public class ManageServiceImpl implements ManageService {
 		logger.info(String.format("Class:%s-Method:%s::END with result[%b]", clazz,method,result));
 		return result;
 	}
+        
+	public List<ResponseDevice> selectDevices(String pilotLicense) {
+		String method = "selectDevicesOfPilot";
+		logger.info(String.format("Class:%s-Method:%s::START with dates[%s]", clazz,method,pilotLicense));
+                List<ResponseDevice> devices = null;
+                try{
+                    devices = service.getDevicesOfPilot(Opzione.ENABLED, pilotLicense);
+                } catch (Exception_Exception e) {
+			e.printStackTrace();
+		}
+		logger.info(String.format("Class:%s-Method:%s::END with result[%b]", clazz,method,devices));
+		return devices;
+	}
 
-
-	public Boolean removeDevice(Device p) {
+	public Boolean removeDevice(Device d) {
 		String method = "removeDevice";
 		Boolean result = false;
-		logger.info(String.format("Class:%s-Method:%s::START with dates[%s]", clazz,method,p.toString()));
+		logger.info(String.format("Class:%s-Method:%s::START with dates[%s]", clazz,method,d.toString()));
 		RequestDevice rq = new RequestDevice();
 		rq.setOperation(Operation.DELETE);
-		buildMapDevice(p, rq);
+		buildMapDevice(d, rq);
 		
 		try {
 			result = service.managerDevice(rq);
@@ -145,8 +163,13 @@ public class ManageServiceImpl implements ManageService {
                 rq.setWeight(d.getWeight());
                 rq.setProducer(d.getProducer());
                 rq.setPilotLicense(d.getPilotLicense());
-                // MANCA checkDevice
-
+                
+                RequestCheckElement checkElement = new RequestCheckElement();
+                for (Iterator iterator = d.getCheckDevice().iterator(); iterator.hasNext();) {
+                    checkElement.setValues(String.valueOf(iterator));
+                    rq.getChekDevice().set(0, checkElement);
+                }
+                
 		logger.info(String.format("Class:%s-Method:%s::END", clazz,method));
         }
 

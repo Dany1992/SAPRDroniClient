@@ -10,11 +10,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import it.uniroma2.sapr.service.RequestPilot;
 import it.uniroma2.sapr.service.RequestDevice;
+import it.uniroma2.sapr.service.ResponseDevice;
 import it.uniroma2.saprClient.model.ManageService;
 import it.uniroma2.saprClient.model.ManageServiceImpl;
+import it.uniroma2.saprClient.view.CheckElement;
 import it.uniroma2.saprClient.view.Pilot;
 import it.uniroma2.saprClient.view.Device;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 /**
  * Questa classe è il controllere dell' MVC. Ogni richiesta deve passare per questo controller
  * 
@@ -54,13 +59,103 @@ public class SAPRClientController {
 		}
 		
 	}
-        
+
         @RequestMapping(value = "/addDevice", method = RequestMethod.GET)
 	public ModelAndView addDevice(){
-		//addPilot è il nome della pagina, command è il nome dell'oggetto pilot nella view
-		return new ModelAndView("addDevice", "command", new Device());
+            //addDevice è il nome della pagina, command è il nome dell'oggetto device nella view
+            return new ModelAndView("addDevice", "command", new Device());
+	}
+        
+	@RequestMapping(value = "/addedDevice", method = RequestMethod.POST)
+	public String addedDevice(HttpServletRequest request, ModelMap model){
+            String method = "addedDevice";
+            log.debug(String.format("%s-%s:: Start", clazz,method));
+            System.out.println("ENTRO NELLA POST");
+            System.out.println("ENTRO NELLA POST");
+
+            ManageService ms = new ManageServiceImpl();
+
+            Device device = new Device();
+            ArrayList<CheckElement> arr_ck = new ArrayList<CheckElement>();
+            CheckElement check = new CheckElement();
+            // si fa prima la prova su due elementi poi si farà il ciclo
+            check.setValue(request.getParameter("check1"));
+            arr_ck.add(check);
+            check.setValue(request.getParameter("check2"));
+            arr_ck.add(check);
+
+            device.setIdDevice(Integer.parseInt(request.getParameter("id")));
+            device.setModel(request.getParameter("model"));
+            device.setPilotLicense(request.getParameter("pilotLicense"));
+            device.setProducer(request.getParameter("producer"));
+            device.setType(request.getParameter("type"));
+            device.setWeight(Integer.parseInt(request.getParameter("weight")));
+            device.setCheckDevice(arr_ck);
+
+            Boolean result = ms.addDevice(device);
+            System.out.println("Riempito tutto");
+            if(result)
+                return "addedDevice";
+            else return "errorAddedDevice";
+	}
+
+        
+	public String addedDeviceOld(@ModelAttribute("addDevice")Device device, ModelMap model){
+            String method = "addedDevice";
+            log.debug(String.format("%s-%s:: Start", clazz,method));
+            ManageService ms = new ManageServiceImpl();
+            Boolean result = ms.addDevice(device);
+            System.out.println("result-->:" + result);
+            if (result){
+                    model.addAttribute("id",device.getIdDevice());
+                    model.addAttribute("model",device.getModel());
+                    model.addAttribute("producer",device.getProducer());
+                    model.addAttribute("license",device.getPilotLicense());
+                    //Il tipo di ritorno è il nome della pagina view che si vuole mostrare
+                    return "addedDevice";
+            }else{
+                    model.addAttribute("id",device.getIdDevice());
+                    model.addAttribute("model",device.getModel());
+                    model.addAttribute("producer",device.getProducer());
+                    model.addAttribute("license",device.getPilotLicense());
+                    return "errorAddedDevice";
+            }
+		
+	}
+        
+	@RequestMapping(value = "/removeDevice", method = RequestMethod.GET)
+	public ModelAndView removeDevice(HttpServletRequest servlet){
+            //Qui serve richiamare il webService per farsi dare la lista dei device del pilota
+                
+            //String pilotLicense = (String) servlet.getSession().getAttribute("licensePilot");
+            // DA CAMBIARE PERCHE DEVE PRENDERE DALLA SESSION IL PILOTA
+            String pilotLicense = "0000000001";
+            ManageService ms = new ManageServiceImpl();
+            List<ResponseDevice> devices = ms.selectDevices(pilotLicense);
+            return new ModelAndView("removeDevice", "command", devices);
 	}
 	
+	@RequestMapping(value = "/removedDevice", method = RequestMethod.POST)
+	public String removedDevice(@ModelAttribute("removeDevice")Device device, ModelMap model){
+            String method = "removedDevice";
+            log.debug(String.format("%s-%s:: Start", clazz,method));
+            ManageService ms = new ManageServiceImpl();
+            Boolean result = ms.removeDevice(device);
+            System.out.println("result-->:" + result);
+            log.debug(String.format("%s-%s:: Result [%b]", clazz,method,result));
+            if (result){
+                    //Il tipo di ritorno è il nome della pagina view che si vuole mostrare
+                    model.addAttribute("id",device.getIdDevice());
+                    log.debug(String.format("%s-%s:: End", clazz,method));
+                    return "removedDevice";
+            }else{
+                    model.addAttribute("id",device.getIdDevice());
+                    log.debug(String.format("%s-%s:: End", clazz,method));
+                    return "errorRemovedDevice";
+            }
+		
+	}     
+        
 	@RequestMapping(value = "/removePilot", method = RequestMethod.GET)
 	public ModelAndView removePilot(){
 		//TODO: Qui serve richiamare il webService per farsi dare la lista dei piloti che andrà
