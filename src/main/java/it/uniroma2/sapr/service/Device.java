@@ -231,4 +231,8 @@ public class Device {
         this.weight = value;
     }
 
+    public void setCheckDevice(ArrayList<CheckElement> arr_ck) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

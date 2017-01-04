@@ -44,10 +44,6 @@
         </tr>
     </table>  
 </form:form>
-<c:forEach var="listValue" items="${command.checkDevice}">
-         ${listValue.model},${listValue.type},${listValue.weight},${listValue.producer}
-       <br>
-</c:forEach>
 
 </body>
 </html>

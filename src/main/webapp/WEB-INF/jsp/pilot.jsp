@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,8 +8,8 @@
 <body>
     <a href="/SAPRClient/removeFlightPlan">Delete FlightPlan</a><br>
     <a href="/SAPRClient/addFlightPlan">Insert FlightPlan</a><br>
-    <a href="/SAPRClient/addFlightPlan">Insert Device</a><br>
-    <a href="/SAPRClient/addFlightPlan">Delete Device</a><br>
+    <a href="/SAPRClient/addDevice">Insert Device</a><br>
+    <a href="/SAPRClient/removeDevice">Delete Device</a><br>
     
 </body>
 </html>
