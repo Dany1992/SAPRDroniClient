@@ -101,7 +101,7 @@ public class ManageServiceImpl implements ManageService {
         public Boolean addFlightPlan(FlightPlan p) {
 		String method = "addFlightPlan";
 		Boolean result = false;
-		logger.info(String.format("Class:%s-Method:%s::START with dates[%s]", clazz,method,p.toString()));
+		logger.info(String.format("Class:%s-Method:%s::START with dates[%s]", clazz,method,p.getIdSapr()));
 		RequestFlightPlan rq = new RequestFlightPlan();
 		rq.setOperation(Operation.ADD);
 		buildMapFlightPlan(p, rq);
