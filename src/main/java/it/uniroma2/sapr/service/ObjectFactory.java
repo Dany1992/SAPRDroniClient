@@ -431,14 +431,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CheckElement }
-     * 
-     */
-    public CheckElement createCheckElement() {
-        return new CheckElement();
-    }
-
-    /**
      * Create an instance of {@link ResponseNote }
      * 
      */
@@ -452,14 +444,6 @@ public class ObjectFactory {
      */
     public RequestNote createRequestNote() {
         return new RequestNote();
-    }
-
-    /**
-     * Create an instance of {@link Device }
-     * 
-     */
-    public Device createDevice() {
-        return new Device();
     }
 
     /**
