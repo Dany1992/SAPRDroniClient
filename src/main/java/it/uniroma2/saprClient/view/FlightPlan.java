@@ -6,6 +6,7 @@
 package it.uniroma2.saprClient.view;
 
 import it.uniroma2.sapr.service.Device;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public class FlightPlan {
     protected String nowArriving;
     protected int idSapr;
     protected int idNote;
-    protected List<Device> devices;
+    protected ArrayList<Integer> devices;
     protected String pilotLicense;
 
     public String getDestinations() {
@@ -79,11 +80,11 @@ public class FlightPlan {
         this.idNote = idNote;
     }
 
-    public List<Device> getDevices() {
+    public ArrayList<Integer> getDevices() {
         return devices;
     }
 
-    public void setDevices(List<Device> devices) {
+    public void setDevices(ArrayList<Integer> devices) {
         this.devices = devices;
     }
 

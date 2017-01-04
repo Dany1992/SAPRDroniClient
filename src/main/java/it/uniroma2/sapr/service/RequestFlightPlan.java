@@ -60,7 +60,7 @@ public class RequestFlightPlan
     protected int idSapr;
     protected int idNote;
     @XmlElement(type = Integer.class)
-    protected List<Integer> devices;
+    protected ArrayList<Integer> devices;
     protected String pilotLicense;
 
     /**
@@ -237,7 +237,7 @@ public class RequestFlightPlan
      * 
      * 
      */
-    public List<Integer> getDevices() {
+    public ArrayList<Integer> getDevices() {
         if (devices == null) {
             devices = new ArrayList<Integer>();
         }
@@ -268,8 +268,9 @@ public class RequestFlightPlan
         this.pilotLicense = value;
     }
 
-    public void setDevices(List<Device> devices) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setDevices(ArrayList<Integer> devices) {
+        this.devices=devices;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
