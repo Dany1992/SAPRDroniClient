@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Error Added Device</title>
 </head>
 <body>
-    <a href="/SAPRClient/removeFlightPlan">Delete FlightPlan</a><br>
-    <a href="/SAPRClient/addFlightPlan">Insert FlightPlan</a><br>
+	<h2>Device ${id}: ${model} - ${producer} of ${licensepilot} error registration</h2>
+        <p>mi dispiace :(</p>
+	
 </body>
 </html>
