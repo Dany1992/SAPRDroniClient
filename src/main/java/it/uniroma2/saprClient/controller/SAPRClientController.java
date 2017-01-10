@@ -1,5 +1,4 @@
 package it.uniroma2.saprClient.controller;
-
 import it.uniroma2.sapr.service.Device;
 import it.uniroma2.sapr.service.Opzione;
 import org.apache.log4j.Logger;
@@ -116,7 +115,7 @@ public class SAPRClientController {
 	*/ 
         @RequestMapping(value = "/addedFlightPlan", method = RequestMethod.POST)
 	public String addedFlightPlan(@ModelAttribute("addFlightPlan")FlightPlanWrapper flight, ModelMap model){
-		System.out.println("Piano di volo inizio"+flight.getFlight());
+		System.out.println("Piano di volo inizio"+flight.getDevicesOfPilot());
 		ManageService ms = new ManageServiceImpl();
 		Boolean result = ms.addFlightPlan(flight.getFlight());
 		System.out.println("result-->:" + result);
