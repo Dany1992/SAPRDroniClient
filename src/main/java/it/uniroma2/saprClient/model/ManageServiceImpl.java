@@ -329,8 +329,14 @@ public class ManageServiceImpl implements ManageService {
 		int idSapr = Integer.parseInt(request.getParameter("idSapr"));
 		flightPlan.setIdSapr(idSapr);
 		
+		String[] checkboxDevices = request.getParameterValues("devices");
 		ArrayList<Integer> devices = new ArrayList<Integer>();
-		devices.
+		
+		for (String device : checkboxDevices) {
+			System.out.println(device);
+			devices.add(Integer.parseInt(device));
+		}
+		
 		flightPlan.setDevices(devices);
 	}
 }
