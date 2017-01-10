@@ -311,29 +311,26 @@ public class ManageServiceImpl implements ManageService {
     }
 
 	public void setFlightPlan(HttpServletRequest request, FlightPlan flightPlan) {
-		flightPlan.setDestinations(request.getParameter("destinations"));
+		flightPlan.setDestinations(request.getParameter("flight.destinations"));
 		
-		flightPlan.setDeparture(request.getParameter("departure"));
+		flightPlan.setDeparture(request.getParameter("flight.departure"));
 		
-		flightPlan.setDateDeparture(request.getParameter("dateDeparture"));
+		flightPlan.setDateDeparture(request.getParameter("flight.dateDeparture"));
 		
-		flightPlan.setTimeDeparture(request.getParameter("timeDeparture"));
+		flightPlan.setTimeDeparture(request.getParameter("flight.timeDeparture"));
 		
-		flightPlan.setNowArriving(request.getParameter("nowArriving"));
+		flightPlan.setNowArriving(request.getParameter("flight.nowArriving"));
 		
-		int idNote = Integer.parseInt(request.getParameter("idNote"));
-		flightPlan.setIdNote(idNote);
 		
-		flightPlan.setPilotLicense(request.getParameter("pilotLicense"));
+		flightPlan.setPilotLicense(request.getParameter("flight.pilotLicense"));
 		
-		int idSapr = Integer.parseInt(request.getParameter("idSapr"));
+		int idSapr = Integer.parseInt(request.getParameter("flight.idSapr"));
+		int	idNote = Integer.parseInt(request.getParameter("flight.idNote"));
+
 		flightPlan.setIdSapr(idSapr);
-		
-<<<<<<< HEAD
-		ArrayList<Integer> devices = new ArrayList<Integer>();
-		devices.
-=======
-		String[] checkboxDevices = request.getParameterValues("devices");
+		flightPlan.setIdNote(idNote);
+
+		String[] checkboxDevices = request.getParameterValues("flight.devices");
 		ArrayList<Integer> devices = new ArrayList<Integer>();
 		
 		for (String device : checkboxDevices) {
@@ -341,7 +338,6 @@ public class ManageServiceImpl implements ManageService {
 			devices.add(Integer.parseInt(device));
 		}
 		
->>>>>>> origin/master
 		flightPlan.setDevices(devices);
 	}
 }
