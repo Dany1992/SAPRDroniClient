@@ -9,7 +9,6 @@
 </head>
 <body>
 	
-	
 	<h2>Add new pilot with parameters</h2>
 	<form:form method="POST" action="/SAPRClient/addedPilot">
    <table>

@@ -87,17 +87,20 @@ public class ManageServiceImpl implements ManageService {
 	
 	public Boolean addDevice(Device d) {
 		String method = "addDevice";
+		System.out.println(String.format("Class:%s-Method:%s::START ", clazz,method));
 		Boolean result = false;
-		logger.info(String.format("Class:%s-Method:%s::START with dates[%s]", clazz,method,d.toString()));
+		logger.info(String.format("Class:%s-Method:%s::START", clazz,method));
 		RequestDevice rq = new RequestDevice();
 		rq.setOperation(Operation.ADD);
+		System.out.println("checkDevice" + d.getCheckDevice().get(0));
+		
 		buildMapDevice(d, rq);
 		
 		try {
 			result = service.managerDevice(rq);
 			logger.info(String.format("Class:%s-Method:%s:: Call to WebService Success", clazz,method,result));
 		} catch (Exception_Exception e) {
-			System.out.println(e.toString());
+			System.out.println("Errore: " + e.toString());
 			logger.info(String.format("Class:%s-Method:%s:: Call to WebService error[%s]", clazz,method,e.toString()));
 			return false;
 		}
@@ -180,25 +183,28 @@ public class ManageServiceImpl implements ManageService {
 		return result;
 	}
 
-
-
-
         private void buildMapDevice(Device d, RequestDevice rq) {
-                String method = "buildMapDevice";
-		logger.info(String.format("Class:%s-Method:%s::START with dates", clazz,method));
-		rq.setIdDevice(d.getIdDevice());
-                rq.setModel(d.getModel());
-                rq.setTyper(d.getType());
-                rq.setWeight(d.getWeight());
-                rq.setProducer(d.getProducer());
-                rq.setPilotLicense(d.getPilotLicense());
-                
-                RequestCheckElement checkElement = new RequestCheckElement();
-                for (Iterator iterator = d.getCheckDevice().iterator(); iterator.hasNext();) {
-                    checkElement.setValues(String.valueOf(iterator));
-                    rq.getChekDevice().set(0, checkElement);
-                }
-                
+        	String method = "buildMapDevice";
+			logger.info(String.format("Class:%s-Method:%s::START ", clazz,method));
+			System.out.println(String.format("Class:%s-Method:%s::START", clazz,method));
+			rq.setIdDevice(d.getIdDevice());
+        	rq.setModel(d.getModel());
+        	rq.setTyper(d.getType());
+        	rq.setWeight(d.getWeight());
+        	rq.setProducer(d.getProducer());
+        	rq.setPilotLicense(d.getPilotLicense());
+        	ArrayList<String> checkDevice = d.getCheckDevice();
+        	
+        	if (checkDevice != null){
+        		for (String checkElementView : checkDevice) {
+        			RequestCheckElement checkEl = new RequestCheckElement();
+        			if (checkElementView != null && checkElementView != ""){
+        				checkEl.setValues(checkElementView);
+        				rq.getChekDevice().add(checkEl);
+        			}
+        		}
+        	}
+        	
 		logger.info(String.format("Class:%s-Method:%s::END", clazz,method));
         }
 
@@ -301,14 +307,6 @@ public class ManageServiceImpl implements ManageService {
 		flight.setFlight(willFlight);
 		return flight;
 	}
-
-    public Boolean addDevice(it.uniroma2.sapr.service.Device device) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Boolean removeDevice(it.uniroma2.sapr.service.Device device) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 	public void setFlightPlan(HttpServletRequest request, FlightPlan flightPlan) {
 		flightPlan.setDestinations(request.getParameter("flight.destinations"));

@@ -1,8 +1,5 @@
 package it.uniroma2.saprClient.controller;
 
-import it.uniroma2.sapr.service.CheckElement;
-import it.uniroma2.sapr.service.Device;
-import it.uniroma2.sapr.service.Opzione;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,12 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import it.uniroma2.sapr.service.RequestPilot;
 import it.uniroma2.sapr.service.ResponseDevice;
-import it.uniroma2.sapr.service.ResponseFlightPlan;
-import it.uniroma2.sapr.service.ResponseSapr;
 import it.uniroma2.saprClient.model.ManageService;
 import it.uniroma2.saprClient.model.ManageServiceImpl;
+import it.uniroma2.saprClient.view.Device;
 import it.uniroma2.saprClient.view.FlightPlan;
 import it.uniroma2.saprClient.view.FlightPlanWrapper;
 import it.uniroma2.saprClient.view.Pilot;
@@ -24,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
 /**
  * Questa classe è il controllere dell' MVC. Ogni richiesta deve passare per questo controller
  * 
@@ -84,30 +78,26 @@ public class SAPRClientController {
 	public String addedDevice(HttpServletRequest request, ModelMap model){
             String method = "addedDevice";
             log.debug(String.format("%s-%s:: Start", clazz,method));
-            System.out.println("ENTRO NELLA POST");
-            System.out.println("ENTRO NELLA POST");
 
             ManageService ms = new ManageServiceImpl();
 
             Device device = new Device();
-            ArrayList<CheckElement> arr_ck = new ArrayList<CheckElement>();
-            CheckElement check = new CheckElement();
-            // si fa prima la prova su due elementi poi si farà il ciclo
-            check.setValue(request.getParameter("check1"));
-            arr_ck.add(check);
-            check.setValue(request.getParameter("check2"));
-            arr_ck.add(check);
-
+            ArrayList<String> arr_ck = new ArrayList<String>();
+            arr_ck.add(request.getParameter("check1"));
+            arr_ck.add(request.getParameter("check2"));
+            arr_ck.add(request.getParameter("check3"));
+            arr_ck.add(request.getParameter("check4"));
+            arr_ck.add(request.getParameter("check5"));
+            
             device.setIdDevice(Integer.parseInt(request.getParameter("id")));
             device.setModel(request.getParameter("model"));
             device.setPilotLicense(request.getParameter("pilotLicense"));
             device.setProducer(request.getParameter("producer"));
             device.setType(request.getParameter("type"));
             device.setWeight(Integer.parseInt(request.getParameter("weight")));
-//            device.setCheckDevice(arr_ck);
+            device.setCheckDevice(arr_ck);
 
             Boolean result = ms.addDevice(device);
-            System.out.println("Riempito tutto");
             if(result)
                 return "addedDevice";
             else return "errorAddedDevice";
@@ -172,18 +162,9 @@ public class SAPRClientController {
       
         @RequestMapping(value = "/addFlightPlan", method = RequestMethod.GET)
 	public ModelAndView addFlightPlan(HttpServletRequest servlet){
-                /*
-		 * In questo metodo occorre richiamare i WebMethod del service per ottentere la lista dei 
-		 * SAPR del pilota e la lista dei Device del pilota. Per fare ciò dobbiamo avere la licensa
-		 * del pilota che abbiamo detto riceveremo tramite sessione e che infatti ho messo come input
-		 * nel metodo
-		*/
-		//questo valore dovrà essere inserito nella session in un altro metodo del controller
-                //String pilotLicense = (String) servlet.getSession().getAttribute("licensePilot");
+        	
 		ManageService ms = new ManageServiceImpl();
-		FlightPlanWrapper flight = ms.popoulateFlighPlanWrapper("0000000001");
-        System.out.println("Sapr of Pilot"+flight.getSaprsOfPilot().get(0).toString());
-        System.out.println("Device of Pilot"+flight.getDevicesOfPilot().get(0).getProducer());
+		FlightPlanWrapper flight = ms.popoulateFlighPlanWrapper(servlet.getParameter("License"));
 		return new ModelAndView("addFlightPlan","model", flight);
 	}
 
@@ -202,8 +183,6 @@ public class SAPRClientController {
             model.addAttribute("departure",flightPlan.getDeparture());
             model.addAttribute("dateDeparture",flightPlan.getDateDeparture());
             model.addAttribute("idSapr",flightPlan.getIdSapr());
-
-			//Il tipo di ritorno è il nome della pagina view che si vuole mostrare
 			return "addedFlightPlan";
 		}else{
 			model.addAttribute("destinations",flightPlan.getDestinations());

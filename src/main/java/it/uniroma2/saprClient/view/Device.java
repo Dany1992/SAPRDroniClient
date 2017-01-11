@@ -13,7 +13,7 @@ public class Device {
     protected int weight;
     protected String producer;
     protected String pilotLicense;
-    protected ArrayList<CheckElement> checkDevice;
+    protected ArrayList<String> checkDevice;
 
     public int getIdDevice() {
         return idDevice;
@@ -63,11 +63,11 @@ public class Device {
         this.pilotLicense = pilotLicense;
     }
 
-    public ArrayList<CheckElement> getCheckDevice() {
+    public ArrayList<String> getCheckDevice() {
         return checkDevice;
     }
 
-    public void setCheckDevice(ArrayList<CheckElement> checkDevice) {
+    public void setCheckDevice(ArrayList<String> checkDevice) {
         this.checkDevice = checkDevice;
     }
 

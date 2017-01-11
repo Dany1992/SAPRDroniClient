@@ -35,7 +35,15 @@
         <tr>
             <td>CheckElement:<input type="text" name="check2"><td>
         </tr>
-        
+        <tr>
+            <td>CheckElement:<input type="text" name="check3"><td>
+        </tr>
+        <tr>
+            <td>CheckElement:<input type="text" name="check4"><td>
+        </tr>
+        <tr>
+            <td>CheckElement:<input type="text" name="check5"><td>
+        </tr>
         <tr>
             <td colspan="2">
                 <input type="submit" value="Submit"/>

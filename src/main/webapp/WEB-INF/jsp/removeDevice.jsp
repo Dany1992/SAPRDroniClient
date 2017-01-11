@@ -18,9 +18,5 @@
     <input type="radio" checked name="sex" value="male">Male
     <input type="radio" name="sex" value="female">Female
 </f:form>
-<%-- Il dindi ha messo la jstl, ora non funziona --%>
-<c:forEach var="val" items="command">
-    <li>${val}</li>
-</c:foreach>
 </body>
 </html>
