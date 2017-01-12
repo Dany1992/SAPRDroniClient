@@ -27,10 +27,10 @@
         <td>Heavyweight:<input type="number" name="heavyweight"><td>
     </tr>
     <tr>
-        <td>MaxDistance:<input type="text" name="maxdistance"><td>
+        <td>MaxDistance:<input type="number" name="maxdistance"><td>
     </tr>
     <tr>
-        <td>MaxHeight:<input type="text" name="maxheight"><td>
+        <td>MaxHeight:<input type="number" name="maxheight"><td>
     </tr>
     <tr>
         <td>Licensepilot:<input type="text" name="licensepilot"><td>

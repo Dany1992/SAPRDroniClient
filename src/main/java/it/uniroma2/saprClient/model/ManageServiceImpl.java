@@ -13,6 +13,7 @@ import it.uniroma2.sapr.service.RequestCheckElement;
 import it.uniroma2.sapr.service.RequestDevice;
 import it.uniroma2.sapr.service.RequestFlightPlan;
 import it.uniroma2.sapr.service.RequestPilot;
+import it.uniroma2.sapr.service.RequestSAPR;
 import it.uniroma2.sapr.service.ResponseDevice;
 import it.uniroma2.sapr.service.ResponseFlightPlan;
 import it.uniroma2.sapr.service.ResponseSapr;
@@ -20,8 +21,8 @@ import it.uniroma2.sapr.service.SAPRDroniInterface;
 import it.uniroma2.saprClient.view.FlightPlan;
 import it.uniroma2.saprClient.view.FlightPlanWrapper;
 import it.uniroma2.saprClient.view.Pilot;
+import it.uniroma2.saprClient.view.Sapr;
 import it.uniroma2.saprClient.view.Device;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -84,6 +85,94 @@ public class ManageServiceImpl implements ManageService {
 		logger.info(String.format("Class:%s-Method:%s::END with result[%b]", clazz,method,result));
 		return result;
 	}
+	
+	public Boolean addSapr(Sapr sapr) {
+		String method = "addSapr";
+		System.out.println(String.format("Class:%s-Method:%s::START ", clazz,method));
+		Boolean result = false;
+		logger.info(String.format("Class:%s-Method:%s::START", clazz,method));
+		RequestSAPR rq = new RequestSAPR();
+		rq.setOperation(Operation.ADD);
+		System.out.println("checkSapr" + sapr.getCheckSapr().get(0));
+		
+		buildMapSapr(sapr, rq);
+		
+		try {
+			result = service.managerSAPR(rq);
+			logger.info(String.format("Class:%s-Method:%s:: Call to WebService Success", clazz,method,result));
+		} catch (Exception_Exception e) {
+			System.out.println("Errore: " + e.toString());
+			logger.info(String.format("Class:%s-Method:%s:: Call to WebService error[%s]", clazz,method,e.toString()));
+			return false;
+		}
+		
+		logger.info(String.format("Class:%s-Method:%s::END with result[%b]", clazz,method,result));
+		return result;
+	}
+	
+	public List<ResponseSapr> selectSapr(String pilotLicense) {
+		String method = "selectSaprOfPilot";
+		logger.info(String.format("Class:%s-Method:%s::START with dates[%s]", clazz,method,pilotLicense));
+                List<ResponseSapr> sapr = null;
+                try{
+                    sapr = service.getSaprsOfPilot(Opzione.ENABLED, pilotLicense);
+                } catch (Exception_Exception e) {
+			e.printStackTrace();
+		}
+		logger.info(String.format("Class:%s-Method:%s::END with result[%b]", clazz,method,sapr));
+		return sapr;
+	}
+	
+	public Boolean removeSapr(Sapr sapr) {
+		String method = "removeSapr";
+		Boolean result = false;
+		logger.info(String.format("Class:%s-Method:%s::START with dates[%s]", clazz,method,sapr.toString()));
+		RequestSAPR rq = new RequestSAPR();
+		rq.setOperation(Operation.DELETE);
+		buildMapSapr(sapr, rq);
+		
+		try {
+			result = service.managerSAPR(rq);
+			logger.info(String.format("Class:%s-Method:%s:: Call to WebService Success", clazz,method,result));
+		} catch (Exception_Exception e) {
+			System.out.println(e.toString());
+			logger.info(String.format("Class:%s-Method:%s:: Call to WebService error[%s]", clazz,method,e.toString()));
+			result = false;
+		}
+		
+		logger.info(String.format("Class:%s-Method:%s::END with result[%b]", clazz,method,result));
+		return result;
+	}
+	
+	private void buildMapSapr(Sapr sapr, RequestSAPR rq) {
+    	String method = "buildMapSapr";
+		logger.info(String.format("Class:%s-Method:%s::START ", clazz,method));
+		System.out.println(String.format("Class:%s-Method:%s::START", clazz,method));
+		
+		sapr.setIdSapr(sapr.getIdSapr());
+        sapr.setModel(sapr.getModel());
+        sapr.setPilotLicense(sapr.getPilotLicense());
+        sapr.setProducer(sapr.getProducer());	            
+        sapr.setWeight(sapr.getWeight());
+        sapr.setHeavyweight(sapr.getHeavyweight());
+        sapr.setMaxDistance(sapr.getMaxDistance());
+        sapr.setMaxHeight(sapr.getMaxHeight());
+        sapr.setBattery(sapr.getBattery());	            
+        
+    	ArrayList<String> checkSapr = sapr.getCheckSapr();
+    	
+    	if (checkSapr != null){
+    		for (String checkElementView : checkSapr) {
+    			RequestCheckElement checkEl = new RequestCheckElement();
+    			if (checkElementView != null && checkElementView != ""){
+    				checkEl.setValues(checkElementView);
+    				rq.getCheckSapr().add(checkEl);
+    			}
+    		}
+    	}
+    	
+	logger.info(String.format("Class:%s-Method:%s::END", clazz,method));
+    }
 	
 	public Boolean addDevice(Device d) {
 		String method = "addDevice";

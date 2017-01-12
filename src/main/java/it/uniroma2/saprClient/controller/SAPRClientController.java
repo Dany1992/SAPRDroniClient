@@ -15,6 +15,8 @@ import it.uniroma2.saprClient.view.Device;
 import it.uniroma2.saprClient.view.FlightPlan;
 import it.uniroma2.saprClient.view.FlightPlanWrapper;
 import it.uniroma2.saprClient.view.Pilot;
+import it.uniroma2.saprClient.view.Sapr;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -67,6 +69,70 @@ public class SAPRClientController {
 			return "errorAddedPilot";
 		}
 	}
+	
+	 @RequestMapping(value = "/addSapr", method = RequestMethod.GET)
+		public ModelAndView addSapr(){
+	            //addSapr è il nome della pagina, command è il nome dell'oggetto device nella view
+	            return new ModelAndView("addSapr", "command", new Sapr());
+		}
+	        
+		@RequestMapping(value = "/addedSapr", method = RequestMethod.POST)
+		public String addedSapr(HttpServletRequest request, ModelMap model){
+	            String method = "addedSapr";
+	            log.debug(String.format("%s-%s:: Start", clazz,method));
+
+	            ManageService ms = new ManageServiceImpl();
+
+	            Sapr sapr = new Sapr();
+	            ArrayList<String> arr_ck = new ArrayList<String>();
+	            arr_ck.add(request.getParameter("check1"));
+	            arr_ck.add(request.getParameter("check2"));
+	            arr_ck.add(request.getParameter("check3"));
+	            arr_ck.add(request.getParameter("check4"));
+	            arr_ck.add(request.getParameter("check5"));
+	            
+	            sapr.setIdSapr(Integer.parseInt(request.getParameter("id")));
+	            sapr.setModel(request.getParameter("model"));
+	            sapr.setPilotLicense(request.getParameter("pilotLicense"));
+	            sapr.setProducer(request.getParameter("producer"));	            
+	            sapr.setWeight(Integer.parseInt(request.getParameter("weight")));
+	            sapr.setHeavyweight(Integer.parseInt(request.getParameter("heavyweight")));
+	            sapr.setMaxDistance(Integer.parseInt(request.getParameter("maxdistance")));
+	            sapr.setMaxHeight(Integer.parseInt(request.getParameter("maxheight")));
+	            sapr.setBattery(request.getParameter("battery"));	            
+	            sapr.setCheckSapr(arr_ck);
+
+	            Boolean result = ms.addSapr(sapr);
+	            if(result)
+	                return "addedSapr";
+	            else return "errorAddedSapr";
+		}
+		
+		/*@RequestMapping(value = "/removeSapr", method = RequestMethod.GET)
+		public ModelAndView removeSapr(HttpServletRequest servlet){
+	            
+		}*/
+		
+		@RequestMapping(value = "/removedSapr", method = RequestMethod.POST)
+		public String removedSapr(@ModelAttribute("removeSapr")Sapr sapr, ModelMap model){
+	            String method = "removedSapr";
+	            log.debug(String.format("%s-%s:: Start", clazz,method));
+	            ManageService ms = new ManageServiceImpl();
+	            Boolean result = ms.removeSapr(sapr);
+	            System.out.println("result-->:" + result);
+	            log.debug(String.format("%s-%s:: Result [%b]", clazz,method,result));
+	            if (result){
+	                    //Il tipo di ritorno è il nome della pagina view che si vuole mostrare
+	                    model.addAttribute("id",sapr.getIdSapr());
+	                    log.debug(String.format("%s-%s:: End", clazz,method));
+	                    return "removedSapr";
+	            }else{
+	                    model.addAttribute("id",sapr.getIdSapr());
+	                    log.debug(String.format("%s-%s:: End", clazz,method));
+	                    return "errorRemovedSapr";
+	            }
+
+		}
 
         @RequestMapping(value = "/addDevice", method = RequestMethod.GET)
 	public ModelAndView addDevice(){
