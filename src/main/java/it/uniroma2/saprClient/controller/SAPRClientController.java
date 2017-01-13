@@ -1,10 +1,4 @@
 package it.uniroma2.saprClient.controller;
-<<<<<<< HEAD
-import it.uniroma2.sapr.service.Device;
-import it.uniroma2.sapr.service.Opzione;
-=======
-
->>>>>>> master
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -77,7 +71,7 @@ public class SAPRClientController {
 	
 	 @RequestMapping(value = "/addSapr", method = RequestMethod.GET)
 		public ModelAndView addSapr(){
-	            //addSapr è il nome della pagina, command è il nome dell'oggetto device nella view
+	            //addSapr ï¿½ il nome della pagina, command ï¿½ il nome dell'oggetto device nella view
 	            return new ModelAndView("addSapr", "command", new Sapr());
 		}
 	        
@@ -127,7 +121,7 @@ public class SAPRClientController {
 	            System.out.println("result-->:" + result);
 	            log.debug(String.format("%s-%s:: Result [%b]", clazz,method,result));
 	            if (result){
-	                    //Il tipo di ritorno è il nome della pagina view che si vuole mostrare
+	                    //Il tipo di ritorno ï¿½ il nome della pagina view che si vuole mostrare
 	                    model.addAttribute("id",sapr.getIdSapr());
 	                    log.debug(String.format("%s-%s:: End", clazz,method));
 	                    return "removedSapr";
@@ -263,35 +257,7 @@ public class SAPRClientController {
 			return "errorAddedFlightPlan";
 		}
 		
-<<<<<<< HEAD
-	}
-	*/ 
-        @RequestMapping(value = "/addedFlightPlan", method = RequestMethod.POST)
-	public String addedFlightPlan(@ModelAttribute("addFlightPlan")FlightPlanWrapper flight, ModelMap model){
-		System.out.println("Piano di volo inizio"+flight.getDevicesOfPilot());
-		ManageService ms = new ManageServiceImpl();
-		Boolean result = ms.addFlightPlan(flight.getFlight());
-		System.out.println("result-->:" + result);
-		if (result){
-			model.addAttribute("destinations",flight.getFlight().getDestinations());
-                        model.addAttribute("departure",flight.getFlight().getDeparture());
-                        model.addAttribute("dateDeparture",flight.getFlight().getDateDeparture());
-                        model.addAttribute("idSapr",flight.getFlight().getIdSapr());
-
-			//Il tipo di ritorno Ã¨ il nome della pagina view che si vuole mostrare
-			return "addedFlightPlan";
-		}else{
-			model.addAttribute("destinations",flight.getFlight().getDestinations());
-                        model.addAttribute("departure",flight.getFlight().getDeparture());
-                        model.addAttribute("dateDeparture",flight.getFlight().getDateDeparture());
-                        model.addAttribute("idSapr",flight.getFlight().getIdSapr());
-			return "errorAddedFlightPlan";
-		}
-		
-        }
-=======
        }
->>>>>>> master
         
 
 	@RequestMapping(value = "/removePilot", method = RequestMethod.GET)
