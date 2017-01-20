@@ -3,7 +3,6 @@ package it.uniroma2.saprClient.model;
 import java.net.URL;
 
 import it.uniroma2.sapr.service.SAPRDroniInterface;
-
 import it.uniroma2.sapr.service.SAPRDroniService;
 
 /**
