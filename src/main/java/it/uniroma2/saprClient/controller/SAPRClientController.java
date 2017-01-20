@@ -246,5 +246,12 @@ public class SAPRClientController {
 		}
 		
 	}
+        
+        @RequestMapping(value = "/indexPilot", method = RequestMethod.GET)
+	public ModelAndView flightPlanPilot(){
+		//TODO: Qui serve richiamare il webService per farsi dare la lista dei piani di volo del pilota che prendo il suo Id tramite Session che andrà
+	
+		return new ModelAndView("indexPilot", "command", new Pilot());
+	}
 
 }

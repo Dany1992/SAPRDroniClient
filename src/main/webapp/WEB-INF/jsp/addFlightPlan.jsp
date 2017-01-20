@@ -36,15 +36,15 @@
   </div>
   <div class="form-group">
     <label>DateDeparture</label>
-    <input type="text" class="form-control" name="flight.dateDeparture" placeholder="Enter dateDeparture">
+    <input type="date" class="form-control" name="flight.dateDeparture">
   </div>
   <div class="form-group">
     <label>TimeDeparture</label>
-    <input type="text" class="form-control" name="flight.timeDeparture" placeholder="Enter timeDeparture">
+    <input size="8" type="text" value="00:00:00" class="form-control" name="flight.timeDeparture" > 
   </div>
   <div class="form-group">
     <label>NowArriving</label>
-    <input type="text" class="form-control" name="flight.nowArriving" placeholder="Enter nowArriving">
+    <input size="8" type="text" value="00:00:00" class="form-control" name="flight.nowArriving">
   </div>
   <div class="form-group">
     <label>IdNote</label>
@@ -117,8 +117,7 @@
 	  </c:forEach>
   </div>
 </div>
-<input type="submit" value="Submit"/>
+    <input type="submit" value="Submit" class="btn-success" id="submit"/>
 </form:form>
-
 </body>
 </html>

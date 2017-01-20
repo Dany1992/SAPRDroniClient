@@ -9,19 +9,28 @@ and open the template in the editor.
 */
 
 body {
-    background-color: lightblue;
-    /*
-    background-image: url("projectDrone.jpg");
+    background-color: white;
+    background-image: url("drone.jpg");
     background-repeat: no-repeat;
     boz-background-size: cover;
     -webkit-background-size: cover;ackground-position: 0 0;
     -moz-background-size: cover;
     -webkit-background-size: cover;
     background-size: cover;
-    */
-    /*font: bold 15px/1.5 Georgia, "Times New Roman", serif;
-    color: black;*/
+    font: bold 15px/1.5 Georgia, "Times New Roman", serif;
+    color: black;
 }
 
 
 h1{text-align: center;}
+
+#submit{
+    margin-left: 10px;
+}
+
+th{
+    color: #F44336;
+}
+table, th, td {
+   border: 1px solid black;
+}
