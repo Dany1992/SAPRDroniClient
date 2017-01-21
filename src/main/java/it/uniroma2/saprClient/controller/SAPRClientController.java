@@ -1,5 +1,6 @@
 package it.uniroma2.saprClient.controller;
 
+import it.uniroma2.sapr.service.Opzione;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -9,10 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import it.uniroma2.sapr.service.ResponseDevice;
+import it.uniroma2.sapr.service.ResponseFlightPlan;
+import it.uniroma2.sapr.service.ResponseSapr;
 import it.uniroma2.saprClient.model.ManageService;
 import it.uniroma2.saprClient.model.ManageServiceImpl;
 import it.uniroma2.saprClient.view.Device;
 import it.uniroma2.saprClient.view.FlightPlan;
+import it.uniroma2.saprClient.view.FlightPlanPilot;
 import it.uniroma2.saprClient.view.FlightPlanWrapper;
 import it.uniroma2.saprClient.view.Pilot;
 import java.util.ArrayList;
@@ -30,11 +34,13 @@ public class SAPRClientController {
 	private static String clazz = "SAPRClientController";
 	private static Logger log = Logger.getRootLogger();
 	
+        /*
 	@RequestMapping(value = "/pilot", method = RequestMethod.GET)
 	public String redirectAdmin() {
 		return "pilot";
 	}
-	
+	*/
+        
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String redirectPilot() {
 		return "admin";
@@ -247,11 +253,18 @@ public class SAPRClientController {
 		
 	}
         
-        @RequestMapping(value = "/indexPilot", method = RequestMethod.GET)
-	public ModelAndView flightPlanPilot(){
+        @RequestMapping(value = "/pilot", method = RequestMethod.GET)
+	public ModelAndView flightPlanPilot(HttpServletRequest servlet){
 		//TODO: Qui serve richiamare il webService per farsi dare la lista dei piani di volo del pilota che prendo il suo Id tramite Session che andrà
-	
-		return new ModelAndView("indexPilot", "command", new Pilot());
+                //prima eseguo la query dei sapr del pilot e poi mi faccio ritornare i piani di volo di tutti i SAPR del Pilot
+		ArrayList<FlightPlanPilot> flightSapr = new ArrayList<FlightPlanPilot>();
+                ManageService ms = new ManageServiceImpl(); 
+                ArrayList<ResponseSapr> sapr=ms.getSaprsOfPilot(Opzione.ENABLED,servlet.getParameter("License"));
+                for(int i=0;i<sapr.size();i++){
+                    flightSapr.add(new FlightPlanPilot(ms.getFlightPlanBySapr(sapr.get(i).getIdSapr())));
+                }
+                System.out.println(flightSapr);
+                return new ModelAndView("pilot","model",flightSapr);
 	}
 
 }

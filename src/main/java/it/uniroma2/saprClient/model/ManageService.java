@@ -19,6 +19,7 @@ public interface ManageService {
         public Boolean addFlightPlan(FlightPlan p);
 	public Boolean removeFlightPlan(FlightPlan p);
         public ResponseFlightPlan getFlightPlanByFlight(FlightPlan p);
+        public ArrayList<ResponseFlightPlan> getFlightPlanBySapr(int idSapr);
         public ArrayList<ResponseSapr> getSaprsOfPilot(Opzione opzione, String pilotLicense);
         public FlightPlanWrapper popoulateFlighPlanWrapper(String pilotLicense);
 		public Boolean removeDevice(Device device);

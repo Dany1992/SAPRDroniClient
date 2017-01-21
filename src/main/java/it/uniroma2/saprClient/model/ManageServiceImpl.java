@@ -338,4 +338,24 @@ public class ManageServiceImpl implements ManageService {
 		
 		flightPlan.setDevices(devices);
 	}
+        
+        public ArrayList<ResponseFlightPlan> getFlightPlanBySapr(int idSapr) {
+		String method = "getFlightPlanBySapr";
+		ArrayList<ResponseFlightPlan> result;
+		logger.info(String.format("Class:%s-Method:%s::START with dates[%s]", clazz,method,idSapr));
+		//RequestFlightPlan rq = new RequestFlightPlan();
+		//buildMapFlightPlan(p, rq);
+		
+		try {
+			result = (ArrayList<ResponseFlightPlan>) service.getFlightPlanBySapr(idSapr);
+			logger.info(String.format("Class:%s-Method:%s:: Call to WebService Success", clazz,method,result));
+		} catch (Exception_Exception e) {
+			System.out.println(e.toString());
+			logger.info(String.format("Class:%s-Method:%s:: Call to WebService error[%s]", clazz,method,e.toString()));
+			result = null;
+		}
+		
+		logger.info(String.format("Class:%s-Method:%s::END with result[%b]", clazz,method,result));
+		return result;
+        }
 }
