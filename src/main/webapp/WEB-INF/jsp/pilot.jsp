@@ -16,7 +16,7 @@
 <body>
     <h1>Welcome Pilot with License: ${license}</h1>
     <c:forEach var="listValue1" items="${model}">
-        <h2> Id Sapr: ${listValue1.flightPilot.get(0).idSapr}</h2>
+        <h2> Id Sapr: </h2>
          <table class="table table-bordered">
     						    <thead>
 						      <tr>

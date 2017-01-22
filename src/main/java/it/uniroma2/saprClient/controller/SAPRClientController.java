@@ -305,7 +305,7 @@ public class SAPRClientController {
 		ManageService ms = new ManageServiceImpl();
 		
 		ArrayList<ResponseSapr> SAPRsDisable = ms.getSAPRs(Opzione.DISABLED);
-		
+		System.out.println(SAPRsDisable);
 		return new ModelAndView("activeSAPR", "model", SAPRsDisable);
 	}
 	

@@ -8,6 +8,7 @@
 <title>AddDevice</title>
 </head>
 <body>
+<h1>Welcome ${license}</h1>
 <h2>Add new device with parameters</h2>
 <form:form method="POST" action="/SAPRClient/addedDevice">
     <table>
