@@ -58,13 +58,10 @@
 <div id="sapr" class="col-xs-6">
 <fieldset class="form-group">
     <h2>Select SAPR:</h2>
-	    <c:forEach var="listValue" items="${model.saprsOfPilot}">
-		    <div class="form-check">
-		      <label class="form-check-label">
-			        <input type="radio" class="form-check-input" name="flight.idSapr" id="optionsRadios1" value="${listValue.idSapr}">
-			          <table class="table">
+             <table class="table table-bordered">
 						    <thead>
 						      <tr>
+                                                        <th>Select</th>
 						        <th>Producer</th>
 						        <th>Model</th>
 						        <th>Weight</th>
@@ -74,8 +71,11 @@
 						        <th>MaxHeight</th>
 						      </tr>
 						    </thead>
+	    <c:forEach var="listValue" items="${model.saprsOfPilot}">
+			      
 						    <tbody>
 						      <tr>
+                                                        <td><input type="radio" class="form-check-input" name="flight.idSapr" id="optionsRadios1" value="${listValue.idSapr}"></td>
 						        <td>${listValue.producer}</td>
 						        <td>${listValue.model}</td>
 						        <td>${listValue.weight}</td>
@@ -84,38 +84,36 @@
 						        <td>${listValue.maxDistance}</td>
 						        <td>${listValue.maxHeight}</td>
 						      </tr>
-						    </tbody>
-				    </table>
-			  </label>
-		    </div>
+                                                    </tbody>
 	  </c:forEach>
+            </table>
   </fieldset>
 </div>
 <div id="device" class="col-xs-6">
-   <div class="checkbox">
     <h2>Select Devices:</h2>
-	    <c:forEach var="listValue" items="${model.devicesOfPilot}">
-		   <input type="checkbox" value="${listValue.idDevice}" name="flight.devices">
-			          <table class="table">
+        <table class="table table-bordered">
 						    <thead>
 						      <tr>
+                                                          <th>Select</th>
 						        <th>Model</th>
 						        <th>Type</th>
 						        <th>Weight</th>
 						        <th>Producer</th>
 						      </tr>
 						    </thead>
+	    <c:forEach var="listValue" items="${model.devicesOfPilot}">
 						    <tbody>
 						      <tr>
+                                                        <td> <input type="checkbox" value="${listValue.idDevice}" name="flight.devices"></td>
 						        <td>${listValue.model}</td>
 						        <td>${listValue.type}</td>
 						        <td>${listValue.weight}</td>
 						        <td>${listValue.producer}</td>
 						      </tr>
 						    </tbody>
-				    </table>
+				    
 	  </c:forEach>
-  </div>
+                                                    </table>
 </div>
     <input type="submit" value="Submit" class="btn-success" id="submit"/>
 </form:form>

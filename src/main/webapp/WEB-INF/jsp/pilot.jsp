@@ -11,15 +11,14 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 <spring:url value="/resources/style.css" var="styleCSS" />
 <link href="${styleCSS}" rel="stylesheet" />
-<title>Insert title here</title>
+<title>Pilot Index</title>
 </head>
-<body>${model.get(0)}
-    <a href="/SAPRClient/removeFlightPlan">Delete FlightPlan</a><br>
-    <a href="/SAPRClient/addFlightPlan">Insert FlightPlan</a><br>
+<body>
+    <h1>Pilot</h1>
     <c:forEach var="listValue1" items="${model}">
-	    <c:forEach var="listValue" items="${listValue1.flightPilot}">
-			          <table class="table table-bordered">
-						    <thead>
+        <h2> Id Sapr: ${listValue1.flightPilot.get(0).idSapr}</h2>
+         <table class="table table-bordered">
+    						    <thead>
 						      <tr>
 						        <th>Destination</th>
 						        <th>Departure</th>
@@ -32,6 +31,8 @@
                                                         <th>PilotLicense</th>   
 						      </tr>
 						    </thead>
+	    <c:forEach var="listValue" items="${listValue1.flightPilot}">
+                   
 						    <tbody>
 						      <tr>
 						        <td>${listValue.destinations}</td>
@@ -44,9 +45,12 @@
                                                         <td>${listValue.devices}</td>
                                                         <td>${listValue.pilotLicense}</td>
 						      </tr>
-						    </tbody>
-				    </table>
+						    </tbody>                    				  
 	  </c:forEach>
+            </table>
    </c:forEach>
+    <br>
+    <a href="/SAPRClient/removeFlightPlan">Delete FlightPlan</a><br>
+    <a href="/SAPRClient/addFlightPlan">Insert FlightPlan</a><br>                                   
 </body>
 </html>

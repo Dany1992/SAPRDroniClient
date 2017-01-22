@@ -22,15 +22,24 @@ body {
 }
 
 
-h1{text-align: center;}
+h1{text-align: center;
+    color: #F44336;
+}
 
 #submit{
     margin-left: 10px;
 }
 
-th{
+table {
+   border: 1px solid rgb(153,153,153);
+   background-color: white;
+}
+
+td{
+    color: rgb(153,153,153);
+}
+
+h2{
     color: #F44336;
 }
-table, th, td {
-   border: 1px solid black;
-}
+
