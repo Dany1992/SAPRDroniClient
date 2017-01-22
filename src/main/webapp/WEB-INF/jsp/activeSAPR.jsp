@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Active SAPR</title>
 </head>
-<body>
+<body>  
 	<h1>Select SAPR if you want active it</h1>
 	<form:form method="POST" action="/SAPRClient/activedSAPR">
 		<c:forEach var="listValue" items="${model}">

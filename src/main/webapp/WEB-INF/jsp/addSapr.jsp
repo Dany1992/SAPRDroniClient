@@ -22,16 +22,16 @@
         <td>Producer:<input type="text" name="producer"><td>
     </tr>
     <tr>
-        <td>Weight:<input type="text" name="weight"><td>
+        <td>Weight:<input type="number" name="weight"><td>
     </tr>
     <tr>
-        <td>Heavyweight:<input type="text" name="heavyweight"><td>
+        <td>Heavyweight:<input type="number" name="heavyweight"><td>
     </tr>
     <tr>
-        <td>MaxDistance:<input type="text" name="maxdistance"><td>
+        <td>MaxDistance:<input type="number" name="maxdistance"><td>
     </tr>
     <tr>
-        <td>MaxHeight:<input type="text" name="maxheight"><td>
+        <td>MaxHeight:<input type="number" name="maxheight"><td>
     </tr>
 <!--     <tr> -->
 <!--         <td>Licensepilot:<input type="text" name="licensepilot" value=$license><td> -->
@@ -59,7 +59,7 @@
             <input type="submit" value="Submit"/>
         </td>
     </tr>
-</table>  
+</table> 
 </form:form>
 </body>
 </html>
