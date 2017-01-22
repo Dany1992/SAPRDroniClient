@@ -1,8 +1,9 @@
 package it.uniroma2.saprClient.controller;
 
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import it.uniroma2.sapr.service.Opzione;
 import org.apache.log4j.Logger;
-import org.eclipse.jdt.internal.compiler.ast.AND_AND_Expression;
+//import org.eclipse.jdt.internal.compiler.ast.AND_AND_Expression;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,10 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import it.uniroma2.sapr.service.Opzione;
 import it.uniroma2.sapr.service.ResponseDevice;
-<<<<<<< HEAD
-import it.uniroma2.sapr.service.ResponseFlightPlan;
-=======
->>>>>>> master
 import it.uniroma2.sapr.service.ResponseSapr;
 import it.uniroma2.saprClient.model.ManageService;
 import it.uniroma2.saprClient.model.ManageServiceImpl;
@@ -24,6 +21,7 @@ import it.uniroma2.saprClient.view.FlightPlan;
 import it.uniroma2.saprClient.view.FlightPlanPilot;
 import it.uniroma2.saprClient.view.FlightPlanWrapper;
 import it.uniroma2.saprClient.view.Pilot;
+import it.uniroma2.saprClient.view.Sapr;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -88,9 +86,6 @@ public class SAPRClientController {
 			return "errorAddedPilot";
 		}
 	}
-<<<<<<< HEAD
-=======
-	
 	 @RequestMapping(value = "/addSapr", method = RequestMethod.GET)
 		public ModelAndView addSapr(HttpServletRequest request){
 		 		Sapr sapr = new Sapr();
@@ -166,7 +161,7 @@ public class SAPRClientController {
 	            }
 
 		}
->>>>>>> master
+
 
         @RequestMapping(value = "/addDevice", method = RequestMethod.GET)
 	public ModelAndView addDevice(){
@@ -362,12 +357,16 @@ public class SAPRClientController {
 	}
         
         @RequestMapping(value = "/pilot", method = RequestMethod.GET)
-	public ModelAndView flightPlanPilot(HttpServletRequest servlet){
+	public ModelAndView flightPlanPilot(HttpServletRequest request){
 		//TODO: Qui serve richiamare il webService per farsi dare la lista dei piani di volo del pilota che prendo il suo Id tramite Session che andrà
                 //prima eseguo la query dei sapr del pilot e poi mi faccio ritornare i piani di volo di tutti i SAPR del Pilot
 		ArrayList<FlightPlanPilot> flightSapr = new ArrayList<FlightPlanPilot>();
+                HttpSession session = request.getSession(true);
+		session.setAttribute("license", request.getParameter("license"));
+		System.out.println("license = " + request.getParameter("license"));
+                String licensePilot = (String) request.getSession().getAttribute("license");
                 ManageService ms = new ManageServiceImpl(); 
-                ArrayList<ResponseSapr> sapr=ms.getSaprsOfPilot(Opzione.ENABLED,servlet.getParameter("License"));
+                ArrayList<ResponseSapr> sapr=ms.getSaprsOfPilot(Opzione.ENABLED,licensePilot);
                 for(int i=0;i<sapr.size();i++){
                     flightSapr.add(new FlightPlanPilot(ms.getFlightPlanBySapr(sapr.get(i).getIdSapr())));
                 }

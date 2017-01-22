@@ -20,8 +20,8 @@
 <link href="${styleCSS}" rel="stylesheet" />
 <title>AddFlightPlan</title>
 </head>
-<<<<<<< HEAD
 <body>
+<h1>Welcome ${license}</h1>
 <h1>ADD NEW FLIGHTPLAN</h1>
 <form:form method="POST" action="/SAPRClient/addedFlightPlan">
  
@@ -47,42 +47,7 @@
     <label>NowArriving</label>
     <input size="8" type="text" value="00:00:00" class="form-control" name="flight.nowArriving">
   </div>
-  <div class="form-group">
-    <label>IdNote</label>
-    <input type="number" class="form-control" name="flight.idNote" placeholder="Enter idNote">
-  </div>
-  <div class="form-group">
-    <label>PilotLicense</label>
-    <input type="text" class="form-control" name="flight.pilotLicense" placeholder="Enter pilotLicense">
-  </div>
-</div>
-=======
-<h1>Welcome ${license}</h1>
-<h2>Add new flightPlan with parameters</h2>
-<form:form method="POST" action="/SAPRClient/addedFlightPlan">
-    
-    <table class="col-xs-6">
-    <h2>Insert Flight Plan Datas</h2>
-    <tr>
-        <td>Destinations:<input type="text" name="flight.destinations"><td>
-    </tr>
-    <tr>
-        <td>Departure:<input type="text" name="flight.departure"><td>
-    </tr>
-    <tr>
-        <td>DateDeparture:<input type="text" name="flight.dateDeparture"><td>
-    </tr>
-    <tr>
-        <td>TimeDeparture:<input type="text" name="flight.timeDeparture"><td>
-    </tr>
-    <tr>
-        <td>NowArriving:<input type="text" name="flight.nowArriving"><td>
-    </tr>
-<!--     <tr> -->
-<!--         <td>IdNote:<input type="number" name="flight.idNote"><td> -->
-<!--     </tr> -->
-</table>
->>>>>>> master
+ </div>
 <div id="sapr" class="col-xs-6">
 <fieldset class="form-group">
     <h2>Select SAPR:</h2>

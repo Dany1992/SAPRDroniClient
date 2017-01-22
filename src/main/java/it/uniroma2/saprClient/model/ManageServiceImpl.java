@@ -13,6 +13,7 @@ import it.uniroma2.sapr.service.RequestCheckElement;
 import it.uniroma2.sapr.service.RequestDevice;
 import it.uniroma2.sapr.service.RequestFlightPlan;
 import it.uniroma2.sapr.service.RequestPilot;
+import it.uniroma2.sapr.service.RequestSAPR;
 import it.uniroma2.sapr.service.ResponseDevice;
 import it.uniroma2.sapr.service.ResponseFlightPlan;
 import it.uniroma2.sapr.service.ResponseSapr;
@@ -21,6 +22,7 @@ import it.uniroma2.saprClient.view.FlightPlan;
 import it.uniroma2.saprClient.view.FlightPlanWrapper;
 import it.uniroma2.saprClient.view.Pilot;
 import it.uniroma2.saprClient.view.Device;
+import it.uniroma2.saprClient.view.Sapr;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
@@ -84,9 +86,7 @@ public class ManageServiceImpl implements ManageService {
 		logger.info(String.format("Class:%s-Method:%s::END with result[%b]", clazz,method,result));
 		return result;
 	}
-	
-<<<<<<< HEAD
-=======
+
 	public Boolean addSapr(Sapr sapr) {
 		String method = "addSapr";
 		System.out.println(String.format("Class:%s-Method:%s::START ", clazz,method));
@@ -175,7 +175,6 @@ public class ManageServiceImpl implements ManageService {
 	logger.info(String.format("Class:%s-Method:%s::END", clazz,method));
     }
 	
->>>>>>> master
 	public Boolean addDevice(Device d) {
 		String method = "addDevice";
 		System.out.println(String.format("Class:%s-Method:%s::START ", clazz,method));
@@ -428,7 +427,6 @@ public class ManageServiceImpl implements ManageService {
 		
 		flightPlan.setDevices(devices);
 	}
-<<<<<<< HEAD
         
         public ArrayList<ResponseFlightPlan> getFlightPlanBySapr(int idSapr) {
 		String method = "getFlightPlanBySapr";
@@ -449,7 +447,6 @@ public class ManageServiceImpl implements ManageService {
 		logger.info(String.format("Class:%s-Method:%s::END with result[%b]", clazz,method,result));
 		return result;
         }
-=======
 	
 	public ArrayList<ResponseSapr> getSAPRs(Opzione op){
 		String method = "getSAPRs";
@@ -494,5 +491,4 @@ public class ManageServiceImpl implements ManageService {
 		return saprNotActivated;
 	}
 	
->>>>>>> master
 }
