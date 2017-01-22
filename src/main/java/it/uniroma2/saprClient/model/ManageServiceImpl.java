@@ -85,6 +85,97 @@ public class ManageServiceImpl implements ManageService {
 		return result;
 	}
 	
+<<<<<<< HEAD
+=======
+	public Boolean addSapr(Sapr sapr) {
+		String method = "addSapr";
+		System.out.println(String.format("Class:%s-Method:%s::START ", clazz,method));
+		Boolean result = false;
+		logger.info(String.format("Class:%s-Method:%s::START", clazz,method));
+		RequestSAPR rq = new RequestSAPR();
+		rq.setOperation(Operation.ADD);
+		System.out.println("checkSapr" + sapr.getCheckSapr().get(0));
+		
+		buildMapSapr(sapr, rq);
+		
+		try {
+			result = service.managerSAPR(rq);
+			logger.info(String.format("Class:%s-Method:%s:: Call to WebService Success", clazz,method,result));
+		} catch (Exception_Exception e) {
+			System.out.println("Errore: " + e.toString());
+			logger.info(String.format("Class:%s-Method:%s:: Call to WebService error[%s]", clazz,method,e.toString()));
+			return false;
+		}
+		
+		logger.info(String.format("Class:%s-Method:%s::END with result[%b]", clazz,method,result));
+		return result;
+	}
+	
+	public List<ResponseSapr> selectSapr(String pilotLicense) {
+		String method = "selectSaprOfPilot";
+		logger.info(String.format("Class:%s-Method:%s::START with dates[%s]", clazz,method,pilotLicense));
+                List<ResponseSapr> sapr = null;
+                try{
+                    sapr = service.getSaprsOfPilot(Opzione.ENABLED, pilotLicense);
+                } catch (Exception_Exception e) {
+			e.printStackTrace();
+		}
+		logger.info(String.format("Class:%s-Method:%s::END with result[%b]", clazz,method,sapr));
+		return sapr;
+	}
+	
+	public Boolean removeSapr(Sapr sapr) {
+		String method = "removeSapr";
+		Boolean result = false;
+		logger.info(String.format("Class:%s-Method:%s::START with dates[%s]", clazz,method,sapr.toString()));
+		RequestSAPR rq = new RequestSAPR();
+		rq.setOperation(Operation.DELETE);
+		buildMapSapr(sapr, rq);
+		
+		try {
+			result = service.managerSAPR(rq);
+			logger.info(String.format("Class:%s-Method:%s:: Call to WebService Success", clazz,method,result));
+		} catch (Exception_Exception e) {
+			System.out.println(e.toString());
+			logger.info(String.format("Class:%s-Method:%s:: Call to WebService error[%s]", clazz,method,e.toString()));
+			result = false;
+		}
+		
+		logger.info(String.format("Class:%s-Method:%s::END with result[%b]", clazz,method,result));
+		return result;
+	}
+	
+	private void buildMapSapr(Sapr sapr, RequestSAPR rq) {
+    	String method = "buildMapSapr";
+		logger.info(String.format("Class:%s-Method:%s::START ", clazz,method));
+		System.out.println(String.format("Class:%s-Method:%s::START", clazz,method));
+		System.out.println(sapr.toString());
+		rq.setIdSapr(sapr.getIdSapr());
+		rq.setModel(sapr.getModel());
+		rq.setPilotLicense(sapr.getPilotLicense());
+		rq.setProducer(sapr.getProducer());	            
+		rq.setWeight(sapr.getWeight());
+		rq.setHeavyweight(sapr.getHeavyweight());
+		rq.setMaxDistance(sapr.getMaxDistance());
+		rq.setMaxHeight(sapr.getMaxHeight());
+		rq.setBattery(sapr.getBattery());	            
+        
+    	ArrayList<String> checkSapr = sapr.getCheckSapr();
+    	
+    	if (checkSapr != null){
+    		for (String checkElementView : checkSapr) {
+    			RequestCheckElement checkEl = new RequestCheckElement();
+    			if (checkElementView != null && checkElementView != ""){
+    				checkEl.setValues(checkElementView);
+    				rq.getCheckSapr().add(checkEl);
+    			}
+    		}
+    	}
+    	
+	logger.info(String.format("Class:%s-Method:%s::END", clazz,method));
+    }
+	
+>>>>>>> master
 	public Boolean addDevice(Device d) {
 		String method = "addDevice";
 		System.out.println(String.format("Class:%s-Method:%s::START ", clazz,method));
@@ -309,6 +400,8 @@ public class ManageServiceImpl implements ManageService {
 	}
 
 	public void setFlightPlan(HttpServletRequest request, FlightPlan flightPlan) {
+		String licensePilot = (String) request.getSession().getAttribute("license");
+		System.out.println("license pilot: "+ licensePilot);
 		flightPlan.setDestinations(request.getParameter("flight.destinations"));
 		
 		flightPlan.setDeparture(request.getParameter("flight.departure"));
@@ -319,14 +412,11 @@ public class ManageServiceImpl implements ManageService {
 		
 		flightPlan.setNowArriving(request.getParameter("flight.nowArriving"));
 		
-		
-		flightPlan.setPilotLicense(request.getParameter("flight.pilotLicense"));
+		flightPlan.setPilotLicense(licensePilot);
 		
 		int idSapr = Integer.parseInt(request.getParameter("flight.idSapr"));
-		int	idNote = Integer.parseInt(request.getParameter("flight.idNote"));
 
 		flightPlan.setIdSapr(idSapr);
-		flightPlan.setIdNote(idNote);
 
 		String[] checkboxDevices = request.getParameterValues("flight.devices");
 		ArrayList<Integer> devices = new ArrayList<Integer>();
@@ -338,6 +428,7 @@ public class ManageServiceImpl implements ManageService {
 		
 		flightPlan.setDevices(devices);
 	}
+<<<<<<< HEAD
         
         public ArrayList<ResponseFlightPlan> getFlightPlanBySapr(int idSapr) {
 		String method = "getFlightPlanBySapr";
@@ -358,4 +449,50 @@ public class ManageServiceImpl implements ManageService {
 		logger.info(String.format("Class:%s-Method:%s::END with result[%b]", clazz,method,result));
 		return result;
         }
+=======
+	
+	public ArrayList<ResponseSapr> getSAPRs(Opzione op){
+		String method = "getSAPRs";
+		ArrayList<ResponseSapr> result = null;
+		logger.info(String.format("Class:%s-Method:%s::START", clazz,method));
+		
+		try {
+			result = (ArrayList<ResponseSapr>)service.getSaprs(op);
+		} catch (Exception_Exception e) {
+			logger.info(String.format("Class:%s-Method:%s::Error [%s]", clazz,method,e.toString()));
+			System.out.println(String.format("Class:%s-Method:%s::Error [%s]", clazz,method,e.toString()));
+		}
+		return result;
+	}
+	
+	public ArrayList<String> setAndActiveSaprs(String[] listSapr){
+		String method = "activeSaprs";
+		logger.info(String.format("Class:%s-Method:%s::START", clazz,method));
+		
+		//la lista conentene i sapr che eventualmente non verranno attivati per un errore nel WS
+		ArrayList<String> saprNotActivated = new ArrayList<String>();
+		
+		for (String idSapr : listSapr) {
+			RequestSAPR request = new RequestSAPR();
+			int idSaprInt = Integer.parseInt(idSapr);
+			request.setIdSapr(idSaprInt);
+			request.setOperation(Operation.ENABLE);
+			try {
+				//se la chiamata a WS per attivare il SAPR va male metto nella lista il codice
+				//del sapr cosi mostro a video quali sapr non sono stati attivati per qualche
+				//errore
+				if (!service.managerSAPR(request)) {
+					saprNotActivated.add(idSapr);
+				}
+			} catch (Exception_Exception e) {
+				logger.info(String.format("Class:%s-Method:%s::Error[%s]", clazz,method,e.toString()));
+				System.out.println("Error:" + e.toString());
+				return saprNotActivated;
+			}
+		}
+		
+		return saprNotActivated;
+	}
+	
+>>>>>>> master
 }

@@ -11,15 +11,15 @@
 <h2>Add new device with parameters</h2>
 <form:form method="POST" action="/SAPRClient/addedDevice">
     <table>
-        <tr>
-            <td>Id:<input type="text" name="id"><td>
-        </tr>
+<!--         <tr> -->
+<!--             <td>Id:<input type="text" name="id"><td> -->
+<!--         </tr> -->
         <tr>
             <td>Model:<input type="text" name="model"><td>
         </tr>
-        <tr>
-            <td>Pilot License:<input type="text" name="pilotLicense"><td>
-        </tr>
+<!--         <tr> -->
+<!--             <td>Pilot License:<input type="text" name="pilotLicense"><td> -->
+<!--         </tr> -->
         <tr>
             <td>Producer:<input type="text" name="producer"><td>
         </tr>

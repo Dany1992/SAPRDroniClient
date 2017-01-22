@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Amministratore</title>
+<title>EnableDevice</title>
 </head>
 <body>
-<a href="/SAPRClient/addPilot">Add Pilot</a><br>
-<a href="/SAPRClient/removePilot">Delete Pilot</a><br>
-<a href="/SAPRClient/activeSAPR">Active Sapr</a>
+
 </body>
 </html>

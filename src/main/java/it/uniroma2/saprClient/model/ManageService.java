@@ -18,6 +18,7 @@ public interface ManageService {
 	public Boolean removePilot(Pilot p);
         public Boolean addFlightPlan(FlightPlan p);
 	public Boolean removeFlightPlan(FlightPlan p);
+<<<<<<< HEAD
         public ResponseFlightPlan getFlightPlanByFlight(FlightPlan p);
         public ArrayList<ResponseFlightPlan> getFlightPlanBySapr(int idSapr);
         public ArrayList<ResponseSapr> getSaprsOfPilot(Opzione opzione, String pilotLicense);
@@ -26,4 +27,17 @@ public interface ManageService {
 		public Boolean addDevice(Device device);
 		public List<ResponseDevice> selectDevices(String pilotLicense);
 		public void setFlightPlan(HttpServletRequest request, FlightPlan flightPlan);
+=======
+    public ResponseFlightPlan getFlightPlanByFlight(FlightPlan p);
+    public ArrayList<ResponseSapr> getSaprsOfPilot(Opzione opzione, String pilotLicense);
+    public FlightPlanWrapper popoulateFlighPlanWrapper(String pilotLicense);
+	public Boolean removeDevice(Device device);
+	public Boolean addDevice(Device device);
+	public Boolean removeSapr(Sapr sapr);
+	public Boolean addSapr(Sapr sapr);		
+	public List<ResponseDevice> selectDevices(String pilotLicense);
+	public void setFlightPlan(HttpServletRequest request, FlightPlan flightPlan);
+	public ArrayList<ResponseSapr> getSAPRs(Opzione op);
+	public ArrayList<String> setAndActiveSaprs(String[] listSapr);
+>>>>>>> master
 }
