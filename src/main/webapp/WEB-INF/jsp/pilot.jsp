@@ -9,5 +9,7 @@
 <body>
     <a href="/SAPRClient/removeFlightPlan">Delete FlightPlan</a><br>
     <a href="/SAPRClient/addFlightPlan">Insert FlightPlan</a><br>
+    <a href="/SAPRClient/addSapr">Add Sapr</a><br>
+    <a href="/SAPRClient/addDevice">Add Device</a><br>
 </body>
 </html>

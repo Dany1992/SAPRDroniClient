@@ -7,7 +7,7 @@
 <title>Error registration sapr</title>
 </head>
 <body>
-	<h2>Error Sapr ${idSapr}: {model} {producer} of {pilotlicense} not removed!</h2>
+	<h2>Error Sapr ${idSapr}: ${model} ${producer} of ${pilotlicense} not add!</h2>
 	
 </body>
 </html>

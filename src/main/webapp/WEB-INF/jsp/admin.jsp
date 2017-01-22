@@ -7,7 +7,8 @@
 <title>Amministratore</title>
 </head>
 <body>
-<a href="/SAPRClient/addPilot">Aggiungi Pilota</a><br>
-<a href="/SAPRClient/removePilot">Rimuovi Pilota</a>
+<a href="/SAPRClient/addPilot">Add Pilot</a><br>
+<a href="/SAPRClient/removePilot">Delete Pilot</a><br>
+<a href="/SAPRClient/activeSAPR">Active Sapr</a>
 </body>
 </html>

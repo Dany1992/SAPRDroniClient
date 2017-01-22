@@ -29,4 +29,6 @@ public interface ManageService {
 	public Boolean addSapr(Sapr sapr);		
 	public List<ResponseDevice> selectDevices(String pilotLicense);
 	public void setFlightPlan(HttpServletRequest request, FlightPlan flightPlan);
+	public ArrayList<ResponseSapr> getSAPRs(Opzione op);
+	public ArrayList<String> setAndActiveSaprs(String[] listSapr);
 }

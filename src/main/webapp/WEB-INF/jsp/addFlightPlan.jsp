@@ -14,8 +14,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>AddFlightPlan</title>
 </head>
-
-<h1>Add new flightPlan with parameters</h1>
+<h1>Welcome ${license}</h1>
+<h2>Add new flightPlan with parameters</h2>
 <form:form method="POST" action="/SAPRClient/addedFlightPlan">
     
     <table class="col-xs-6">
@@ -35,12 +35,9 @@
     <tr>
         <td>NowArriving:<input type="text" name="flight.nowArriving"><td>
     </tr>
-    <tr>
-        <td>IdNote:<input type="number" name="flight.idNote"><td>
-    </tr>
-    <tr>
-        <td>PilotLicense:<input type="text" name="flight.pilotLicense"><td>
-    </tr>
+<!--     <tr> -->
+<!--         <td>IdNote:<input type="number" name="flight.idNote"><td> -->
+<!--     </tr> -->
 </table>
 <div id="sapr" class="col-xs-6">
     <h2>Choose a Sapr ${model.flight.destinations}</h2>

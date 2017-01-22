@@ -148,16 +148,16 @@ public class ManageServiceImpl implements ManageService {
     	String method = "buildMapSapr";
 		logger.info(String.format("Class:%s-Method:%s::START ", clazz,method));
 		System.out.println(String.format("Class:%s-Method:%s::START", clazz,method));
-		
-		sapr.setIdSapr(sapr.getIdSapr());
-        sapr.setModel(sapr.getModel());
-        sapr.setPilotLicense(sapr.getPilotLicense());
-        sapr.setProducer(sapr.getProducer());	            
-        sapr.setWeight(sapr.getWeight());
-        sapr.setHeavyweight(sapr.getHeavyweight());
-        sapr.setMaxDistance(sapr.getMaxDistance());
-        sapr.setMaxHeight(sapr.getMaxHeight());
-        sapr.setBattery(sapr.getBattery());	            
+		System.out.println(sapr.toString());
+		rq.setIdSapr(sapr.getIdSapr());
+		rq.setModel(sapr.getModel());
+		rq.setPilotLicense(sapr.getPilotLicense());
+		rq.setProducer(sapr.getProducer());	            
+		rq.setWeight(sapr.getWeight());
+		rq.setHeavyweight(sapr.getHeavyweight());
+		rq.setMaxDistance(sapr.getMaxDistance());
+		rq.setMaxHeight(sapr.getMaxHeight());
+		rq.setBattery(sapr.getBattery());	            
         
     	ArrayList<String> checkSapr = sapr.getCheckSapr();
     	
@@ -398,6 +398,8 @@ public class ManageServiceImpl implements ManageService {
 	}
 
 	public void setFlightPlan(HttpServletRequest request, FlightPlan flightPlan) {
+		String licensePilot = (String) request.getSession().getAttribute("license");
+		System.out.println("license pilot: "+ licensePilot);
 		flightPlan.setDestinations(request.getParameter("flight.destinations"));
 		
 		flightPlan.setDeparture(request.getParameter("flight.departure"));
@@ -408,14 +410,11 @@ public class ManageServiceImpl implements ManageService {
 		
 		flightPlan.setNowArriving(request.getParameter("flight.nowArriving"));
 		
-		
-		flightPlan.setPilotLicense(request.getParameter("flight.pilotLicense"));
+		flightPlan.setPilotLicense(licensePilot);
 		
 		int idSapr = Integer.parseInt(request.getParameter("flight.idSapr"));
-		int	idNote = Integer.parseInt(request.getParameter("flight.idNote"));
 
 		flightPlan.setIdSapr(idSapr);
-		flightPlan.setIdNote(idNote);
 
 		String[] checkboxDevices = request.getParameterValues("flight.devices");
 		ArrayList<Integer> devices = new ArrayList<Integer>();
@@ -427,4 +426,48 @@ public class ManageServiceImpl implements ManageService {
 		
 		flightPlan.setDevices(devices);
 	}
+	
+	public ArrayList<ResponseSapr> getSAPRs(Opzione op){
+		String method = "getSAPRs";
+		ArrayList<ResponseSapr> result = null;
+		logger.info(String.format("Class:%s-Method:%s::START", clazz,method));
+		
+		try {
+			result = (ArrayList<ResponseSapr>)service.getSaprs(op);
+		} catch (Exception_Exception e) {
+			logger.info(String.format("Class:%s-Method:%s::Error [%s]", clazz,method,e.toString()));
+			System.out.println(String.format("Class:%s-Method:%s::Error [%s]", clazz,method,e.toString()));
+		}
+		return result;
+	}
+	
+	public ArrayList<String> setAndActiveSaprs(String[] listSapr){
+		String method = "activeSaprs";
+		logger.info(String.format("Class:%s-Method:%s::START", clazz,method));
+		
+		//la lista conentene i sapr che eventualmente non verranno attivati per un errore nel WS
+		ArrayList<String> saprNotActivated = new ArrayList<String>();
+		
+		for (String idSapr : listSapr) {
+			RequestSAPR request = new RequestSAPR();
+			int idSaprInt = Integer.parseInt(idSapr);
+			request.setIdSapr(idSaprInt);
+			request.setOperation(Operation.ENABLE);
+			try {
+				//se la chiamata a WS per attivare il SAPR va male metto nella lista il codice
+				//del sapr cosi mostro a video quali sapr non sono stati attivati per qualche
+				//errore
+				if (!service.managerSAPR(request)) {
+					saprNotActivated.add(idSapr);
+				}
+			} catch (Exception_Exception e) {
+				logger.info(String.format("Class:%s-Method:%s::Error[%s]", clazz,method,e.toString()));
+				System.out.println("Error:" + e.toString());
+				return saprNotActivated;
+			}
+		}
+		
+		return saprNotActivated;
+	}
+	
 }

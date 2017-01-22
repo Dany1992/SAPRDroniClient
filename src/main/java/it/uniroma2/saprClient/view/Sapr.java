@@ -102,6 +102,14 @@ public class Sapr {
 	public void setActive(int active) {
 		this.active = active;
 	}
+
+	@Override
+	public String toString() {
+		return "Sapr [idSapr=" + idSapr + ", model=" + model + ", producer=" + producer + ", weight=" + weight
+				+ ", heavyweight=" + heavyweight + ", battery=" + battery + ", maxDistance=" + maxDistance
+				+ ", maxHeight=" + maxHeight + ", pilotLicense=" + pilotLicense + ", checkSapr=" + checkSapr
+				+ ", active=" + active + "]";
+	}
 	
 }
 
