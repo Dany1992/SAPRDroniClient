@@ -14,7 +14,7 @@
 <title>Pilot Index</title>
 </head>
 <body>
-    <h1>Pilot</h1>
+    <h1>Welcome Pilot with License: ${license}</h1>
     <c:forEach var="listValue1" items="${model}">
         <h2> Id Sapr: ${listValue1.flightPilot.get(0).idSapr}</h2>
          <table class="table table-bordered">
@@ -24,11 +24,7 @@
 						        <th>Departure</th>
 						        <th>DateDeparture</th>
 						        <th>TimeDeparture</th>
-						        <th>NowArriving</th>
-						        <th>IdSapr</th>
-						        <th>IdNote</th>
-                                                        <th>IdDevice</th>
-                                                        <th>PilotLicense</th>   
+						        <th>NowArriving</th>  
 						      </tr>
 						    </thead>
 	    <c:forEach var="listValue" items="${listValue1.flightPilot}">
@@ -40,19 +36,20 @@
 						        <td>${listValue.dateDeparture}</td>
 						        <td>${listValue.timeDeparture}</td>
 						        <td>${listValue.nowArriving}</td>
-						        <td>${listValue.idSapr}</td>
-						        <td>${listValue.idNote}</td>
-                                                        <td>${listValue.devices}</td>
-                                                        <td>${listValue.pilotLicense}</td>
 						      </tr>
 						    </tbody>                    				  
 	  </c:forEach>
             </table>
    </c:forEach>
-    <br>
-    <a href="/SAPRClient/removeFlightPlan">Delete FlightPlan</a><br>
-    <a href="/SAPRClient/addFlightPlan">Insert FlightPlan</a><br>                                   
-    <a href="/SAPRClient/addSapr">Add Sapr</a><br>
-    <a href="/SAPRClient/addDevice">Add Device</a><br>
+
+<button type="button" class="btn btn-success"><a href="/SAPRClient/addFlightPlan">Insert FlightPlan</a></button>
+
+
+<button type="button" class="btn btn-info"><a href="/SAPRClient/addSapr">Add Sapr</a></button>
+
+
+<button type="button" class="btn btn-warning"><a href="/SAPRClient/addDevice">Add Device</a></button>
+
+<button type="button" class="btn btn-danger"><a href="/SAPRClient/removeFlightPlan">Delete FlightPlan</a></button>
 </body>
 </html>

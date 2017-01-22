@@ -361,10 +361,13 @@ public class SAPRClientController {
 		//TODO: Qui serve richiamare il webService per farsi dare la lista dei piani di volo del pilota che prendo il suo Id tramite Session che andrà
                 //prima eseguo la query dei sapr del pilot e poi mi faccio ritornare i piani di volo di tutti i SAPR del Pilot
 		ArrayList<FlightPlanPilot> flightSapr = new ArrayList<FlightPlanPilot>();
-                HttpSession session = request.getSession(true);
-		session.setAttribute("license", request.getParameter("license"));
-		System.out.println("license = " + request.getParameter("license"));
                 String licensePilot = (String) request.getSession().getAttribute("license");
+                if(licensePilot==null){
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("license", request.getParameter("license"));
+                    System.out.println("license = " + request.getParameter("license"));
+                    licensePilot=request.getParameter("license");
+                }
                 ManageService ms = new ManageServiceImpl(); 
                 ArrayList<ResponseSapr> sapr=ms.getSaprsOfPilot(Opzione.ENABLED,licensePilot);
                 for(int i=0;i<sapr.size();i++){
