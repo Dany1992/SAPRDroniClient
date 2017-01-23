@@ -108,6 +108,11 @@ public class SAPRClientController {
 	            arr_ck.add(request.getParameter("check3"));
 	            arr_ck.add(request.getParameter("check4"));
 	            arr_ck.add(request.getParameter("check5"));
+                    arr_ck.add(request.getParameter("check6"));
+                    arr_ck.add(request.getParameter("check7"));
+                    arr_ck.add(request.getParameter("check8"));
+                    arr_ck.add(request.getParameter("check9"));
+                    arr_ck.add(request.getParameter("check10"));
 	            System.out.println("id sapr" + idSaprCounter.get());
 	            sapr.setIdSapr(idSaprCounter.getAndIncrement());
 	            sapr.setModel(request.getParameter("model"));
@@ -182,6 +187,11 @@ public class SAPRClientController {
             arr_ck.add(request.getParameter("check3"));
             arr_ck.add(request.getParameter("check4"));
             arr_ck.add(request.getParameter("check5"));
+            arr_ck.add(request.getParameter("check6"));
+            arr_ck.add(request.getParameter("check7"));
+            arr_ck.add(request.getParameter("check8"));
+            arr_ck.add(request.getParameter("check9"));
+            arr_ck.add(request.getParameter("check10"));
             
             device.setIdDevice(idDeviceCounter.getAndIncrement());
             device.setModel(request.getParameter("model"));
@@ -371,7 +381,7 @@ public class SAPRClientController {
                 ManageService ms = new ManageServiceImpl(); 
                 ArrayList<ResponseSapr> sapr=ms.getSaprsOfPilot(Opzione.ENABLED,licensePilot);
                 for(int i=0;i<sapr.size();i++){
-                    flightSapr.add(new FlightPlanPilot(ms.getFlightPlanBySapr(sapr.get(i).getIdSapr())));
+                    flightSapr.add(new FlightPlanPilot(ms.getFlightPlanBySapr(sapr.get(i).getIdSapr()),sapr.get(i)));
                 }
                 System.out.println(flightSapr);
                 return new ModelAndView("pilot","model",flightSapr);
