@@ -5,6 +5,7 @@
  */
 package it.uniroma2.saprClient.view;
 import it.uniroma2.sapr.service.ResponseFlightPlan;
+import it.uniroma2.sapr.service.ResponseSapr;
 import java.util.ArrayList;
 
 /**
@@ -14,9 +15,19 @@ import java.util.ArrayList;
 public class FlightPlanPilot {
     // dovrà essere riempita richiamando il metodo del webService: getFlightPlanBySapr
     protected ArrayList<ResponseFlightPlan> flightPilot;
+    protected ResponseSapr saprPilot;
 
-    public FlightPlanPilot(ArrayList<ResponseFlightPlan> flightPilot) {
+    public ResponseSapr getSaprPilot() {
+        return saprPilot;
+    }
+
+    public void setSaprPilot(ResponseSapr saprPilot) {
+        this.saprPilot = saprPilot;
+    }
+
+    public FlightPlanPilot(ArrayList<ResponseFlightPlan> flightPilot,ResponseSapr saprPilot) {
         this.flightPilot = flightPilot;
+        this.saprPilot = saprPilot;
     }
 
     public ArrayList<ResponseFlightPlan> getFlightPilot() {

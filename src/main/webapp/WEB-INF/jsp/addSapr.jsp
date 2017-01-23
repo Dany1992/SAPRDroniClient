@@ -55,6 +55,21 @@
         <td>CheckElement:<input type="text" name="check5"><td>
     </tr>
     <tr>
+        <td>CheckElement:<input type="text" name="check6"><td>
+    </tr>
+    <tr>
+        <td>CheckElement:<input type="text" name="check7"><td>
+    </tr>
+    <tr>
+        <td>CheckElement:<input type="text" name="check8"><td>
+    </tr>
+    <tr>
+        <td>CheckElement:<input type="text" name="check9"><td>
+    </tr>
+    <tr>
+        <td>CheckElement:<input type="text" name="check10"><td>
+    </tr>
+    <tr>
         <td colspan="2">
             <input type="submit" value="Submit"/>
         </td>
