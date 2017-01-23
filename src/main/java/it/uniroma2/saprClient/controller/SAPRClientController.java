@@ -1,6 +1,7 @@
 package it.uniroma2.saprClient.controller;
 
 import org.apache.log4j.Logger;
+import org.eclipse.jdt.internal.compiler.ast.AND_AND_Expression;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import it.uniroma2.sapr.service.Opzione;
 import it.uniroma2.sapr.service.ResponseDevice;
+import it.uniroma2.sapr.service.ResponseSapr;
 import it.uniroma2.saprClient.model.ManageService;
 import it.uniroma2.saprClient.model.ManageServiceImpl;
 import it.uniroma2.saprClient.view.Device;
@@ -19,7 +22,10 @@ import it.uniroma2.saprClient.view.Sapr;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Questa classe Ã¨ il controllere dell' MVC. Ogni richiesta deve passare per questo controller
@@ -31,14 +37,21 @@ import javax.servlet.http.HttpServletRequest;
 public class SAPRClientController {
 	private static String clazz = "SAPRClientController";
 	private static Logger log = Logger.getRootLogger();
+	private static final AtomicInteger idSaprCounter = new AtomicInteger();
+	private static final AtomicInteger idNoteCounter = new AtomicInteger();
+	private static final AtomicInteger idDeviceCounter = new AtomicInteger();
 	
 	@RequestMapping(value = "/pilot", method = RequestMethod.GET)
-	public String redirectAdmin() {
+	public String redirectPilot(HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		session.setAttribute("license", request.getParameter("license"));
+		System.out.println("license = " + request.getParameter("license"));
+		
 		return "pilot";
 	}
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String redirectPilot() {
+	public String redirectAdmin(HttpServletRequest request) {
 		return "admin";
 	}	
 	
@@ -71,16 +84,18 @@ public class SAPRClientController {
 	}
 	
 	 @RequestMapping(value = "/addSapr", method = RequestMethod.GET)
-		public ModelAndView addSapr(){
-	            //addSapr è il nome della pagina, command è il nome dell'oggetto device nella view
-	            return new ModelAndView("addSapr", "command", new Sapr());
+		public ModelAndView addSapr(HttpServletRequest request){
+		 		Sapr sapr = new Sapr();
+		 		String licensePilot = (String) request.getSession().getAttribute("license");
+		 		sapr.setPilotLicense(licensePilot);
+		 		return new ModelAndView("addSapr", "command", sapr);
 		}
 	        
 		@RequestMapping(value = "/addedSapr", method = RequestMethod.POST)
 		public String addedSapr(HttpServletRequest request, ModelMap model){
 	            String method = "addedSapr";
 	            log.debug(String.format("%s-%s:: Start", clazz,method));
-
+	            String licensePilot = (String) request.getSession().getAttribute("license");
 	            ManageService ms = new ManageServiceImpl();
 
 	            Sapr sapr = new Sapr();
@@ -90,22 +105,32 @@ public class SAPRClientController {
 	            arr_ck.add(request.getParameter("check3"));
 	            arr_ck.add(request.getParameter("check4"));
 	            arr_ck.add(request.getParameter("check5"));
-	            
-	            sapr.setIdSapr(Integer.parseInt(request.getParameter("id")));
+	            System.out.println("id sapr" + idSaprCounter.get());
+	            sapr.setIdSapr(idSaprCounter.getAndIncrement());
 	            sapr.setModel(request.getParameter("model"));
-	            sapr.setPilotLicense(request.getParameter("pilotLicense"));
-	            sapr.setProducer(request.getParameter("producer"));	            
-	            sapr.setWeight(Integer.parseInt(request.getParameter("weight")));
-	            sapr.setHeavyweight(Integer.parseInt(request.getParameter("heavyweight")));
+	            sapr.setProducer(request.getParameter("producer"));
+	            sapr.setPilotLicense(licensePilot);
+	            sapr.setWeight(Integer.parseInt(request.getParameter("weight")));	            
+	            sapr.setHeavyweight(Integer.parseInt(request.getParameter("heavyweight")));	
 	            sapr.setMaxDistance(Integer.parseInt(request.getParameter("maxdistance")));
 	            sapr.setMaxHeight(Integer.parseInt(request.getParameter("maxheight")));
 	            sapr.setBattery(request.getParameter("battery"));	            
 	            sapr.setCheckSapr(arr_ck);
-
+	            System.out.println("The request is:" + sapr.toString());
 	            Boolean result = ms.addSapr(sapr);
-	            if(result)
-	                return "addedSapr";
-	            else return "errorAddedSapr";
+	            if(result){
+	            	model.addAttribute("idSapr", sapr.getIdSapr());
+	            	model.addAttribute("producer", sapr.getProducer());
+	            	model.addAttribute("licensepilot", sapr.getPilotLicense());
+	            	model.addAttribute("model", sapr.getModel());
+	            	return "addedSapr";
+	            }else{
+	            	model.addAttribute("idSapr", sapr.getIdSapr());
+	            	model.addAttribute("model", sapr.getModel());
+	            	model.addAttribute("producer", sapr.getProducer());
+	            	model.addAttribute("pilotlicense", sapr.getPilotLicense());
+	            	return "errorAddedSapr";
+	            }
 		}
 		
 		/*@RequestMapping(value = "/removeSapr", method = RequestMethod.GET)
@@ -122,7 +147,7 @@ public class SAPRClientController {
 	            System.out.println("result-->:" + result);
 	            log.debug(String.format("%s-%s:: Result [%b]", clazz,method,result));
 	            if (result){
-	                    //Il tipo di ritorno è il nome della pagina view che si vuole mostrare
+	                    //Il tipo di ritorno ï¿½ il nome della pagina view che si vuole mostrare
 	                    model.addAttribute("id",sapr.getIdSapr());
 	                    log.debug(String.format("%s-%s:: End", clazz,method));
 	                    return "removedSapr";
@@ -136,7 +161,6 @@ public class SAPRClientController {
 
         @RequestMapping(value = "/addDevice", method = RequestMethod.GET)
 	public ModelAndView addDevice(){
-            //addDevice Ã¨ il nome della pagina, command Ã¨ il nome dell'oggetto device nella view
             return new ModelAndView("addDevice", "command", new Device());
 	}
         
@@ -144,7 +168,7 @@ public class SAPRClientController {
 	public String addedDevice(HttpServletRequest request, ModelMap model){
             String method = "addedDevice";
             log.debug(String.format("%s-%s:: Start", clazz,method));
-
+            String licensePilot = (String) request.getSession().getAttribute("license");
             ManageService ms = new ManageServiceImpl();
 
             Device device = new Device();
@@ -155,44 +179,28 @@ public class SAPRClientController {
             arr_ck.add(request.getParameter("check4"));
             arr_ck.add(request.getParameter("check5"));
             
-            device.setIdDevice(Integer.parseInt(request.getParameter("id")));
+            device.setIdDevice(idDeviceCounter.getAndIncrement());
             device.setModel(request.getParameter("model"));
-            device.setPilotLicense(request.getParameter("pilotLicense"));
+            device.setPilotLicense(licensePilot);
             device.setProducer(request.getParameter("producer"));
             device.setType(request.getParameter("type"));
             device.setWeight(Integer.parseInt(request.getParameter("weight")));
             device.setCheckDevice(arr_ck);
 
             Boolean result = ms.addDevice(device);
-            if(result)
-                return "addedDevice";
-            else return "errorAddedDevice";
+            if(result){
+            	model.addAttribute("producer", device.getProducer());
+            	model.addAttribute("licensepilot", device.getPilotLicense());
+            	model.addAttribute("model", device.getModel());
+            	return "addedDevice";
+            }else{
+            	model.addAttribute("model", device.getModel());
+            	model.addAttribute("producer", device.getProducer());
+            	model.addAttribute("pilotlicense", device.getPilotLicense());
+            	return "errorAddedDevice";
+            }
 	}
 
-        
-	public String addedDeviceOld(@ModelAttribute("addDevice")Device device, ModelMap model){
-            String method = "addedDevice";
-            log.debug(String.format("%s-%s:: Start", clazz,method));
-            ManageService ms = new ManageServiceImpl();
-            Boolean result = ms.addDevice(device);
-            System.out.println("result-->:" + result);
-            if (result){
-                    model.addAttribute("id",device.getIdDevice());
-                    model.addAttribute("model",device.getModel());
-                    model.addAttribute("producer",device.getProducer());
-                    model.addAttribute("license",device.getPilotLicense());
-                    //Il tipo di ritorno Ã¨ il nome della pagina view che si vuole mostrare
-                    return "addedDevice";
-            }else{
-                    model.addAttribute("id",device.getIdDevice());
-                    model.addAttribute("model",device.getModel());
-                    model.addAttribute("producer",device.getProducer());
-                    model.addAttribute("license",device.getPilotLicense());
-                    return "errorAddedDevice";
-            }
-		
-	}
-        
 	@RequestMapping(value = "/removeDevice", method = RequestMethod.GET)
 	public ModelAndView removeDevice(HttpServletRequest servlet){
             //Qui serve richiamare il webService per farsi dare la lista dei device del pilota
@@ -228,9 +236,9 @@ public class SAPRClientController {
       
         @RequestMapping(value = "/addFlightPlan", method = RequestMethod.GET)
 	public ModelAndView addFlightPlan(HttpServletRequest servlet){
-        	
 		ManageService ms = new ManageServiceImpl();
-		FlightPlanWrapper flight = ms.popoulateFlighPlanWrapper(servlet.getParameter("License"));
+		String licensePilot = (String) servlet.getSession().getAttribute("license");
+		FlightPlanWrapper flight = ms.popoulateFlighPlanWrapper(licensePilot);
 		return new ModelAndView("addFlightPlan","model", flight);
 	}
 
@@ -239,7 +247,7 @@ public class SAPRClientController {
 	public String addedFlightPlan(HttpServletRequest request, ModelMap model){
 		ManageService ms = new ManageServiceImpl();
 		FlightPlan flightPlan = new FlightPlan();
-		
+		flightPlan.setIdNote(idSaprCounter.getAndIncrement());
 		ms.setFlightPlan(request,flightPlan);
 		
 		Boolean result = ms.addFlightPlan(flightPlan);
@@ -286,11 +294,41 @@ public class SAPRClientController {
 		}
 		
 	}
-        
-        @RequestMapping(value = "/removeFlightPlan", method = RequestMethod.GET)
+    
+	@RequestMapping(value = "/activeSAPR", method = RequestMethod.GET)
+	public ModelAndView activeSAPR(){
+		
+		ManageService ms = new ManageServiceImpl();
+		
+		ArrayList<ResponseSapr> SAPRsDisable = ms.getSAPRs(Opzione.DISABLED);
+		
+		return new ModelAndView("activeSAPR", "model", SAPRsDisable);
+	}
+	
+	@RequestMapping(value = "/activedSAPR", method = RequestMethod.POST)
+	public String activedSAPR(HttpServletRequest request, ModelMap model){
+		String method = "activedSAPR";
+		log.debug(String.format("%s-%s:: Start", clazz,method));
+		
+		String[] saprWillActive = request.getParameterValues("listSapr");
+		if (saprWillActive != null && saprWillActive.length == 0){
+			return "addedFlightPlan"; 
+		}
+		log.debug(String.format("%s-%s:: sapr:[%s]", clazz,method,saprWillActive.toString()));
+		ManageService ms = new ManageServiceImpl();
+		ArrayList<String> saprNotActivated = ms.setAndActiveSaprs(saprWillActive);
+		
+		if (saprNotActivated.isEmpty()){
+			return "activedSAPR";
+		}else{
+			return "errorActivedSapr";
+		}
+	}
+	
+	
+	
+    @RequestMapping(value = "/removeFlightPlan", method = RequestMethod.GET)
 	public ModelAndView removeFlightPlan(){
-		//TODO: Qui serve richiamare il webService per farsi dare la lista dei piloti che andrÃ 
-		//messa al posto di new Pilot()
 		return new ModelAndView("removeFlightPlan", "command", new FlightPlan());
 	}
 	
@@ -298,6 +336,7 @@ public class SAPRClientController {
 	public String removedFlightPlan(@ModelAttribute("removeFlightPlan")FlightPlan flightPlan, ModelMap model){
 		String method = "removedFlightPlan";
 		log.debug(String.format("%s-%s:: Start", clazz,method));
+		
 		ManageService ms = new ManageServiceImpl();
 		Boolean result = ms.removeFlightPlan(flightPlan);
 		System.out.println("result-->:" + result);

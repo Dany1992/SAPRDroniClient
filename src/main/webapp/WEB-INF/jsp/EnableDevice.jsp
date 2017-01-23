@@ -4,12 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>EnableDevice</title>
 </head>
 <body>
-    <a href="/SAPRClient/removeFlightPlan">Delete FlightPlan</a><br>
-    <a href="/SAPRClient/addFlightPlan">Insert FlightPlan</a><br>
-    <a href="/SAPRClient/addSapr">Add Sapr</a><br>
-    <a href="/SAPRClient/addDevice">Add Device</a><br>
+
 </body>
 </html>

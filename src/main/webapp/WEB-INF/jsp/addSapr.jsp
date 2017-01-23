@@ -8,12 +8,13 @@
 <title>AddSapr</title>
 </head>
 <body>
-	<h2>Add new sapr with parameters</h2>
+	<h1>Welcome ${license}</h1>
+	<h2>Add new sapr</h2>
 	<form:form method="POST" action="/SAPRClient/addedSapr">
    <table>
-   	<tr>
-        <td>Id:<input type="number" name="idsapr"><td>
-    </tr>
+<!--    	<tr> -->
+<!--         <td>Id:<input type="number" name="idsapr"><td> -->
+<!--     </tr> -->
     <tr>
         <td>Model:<input type="text" name="model"><td>
     </tr>
@@ -21,20 +22,20 @@
         <td>Producer:<input type="text" name="producer"><td>
     </tr>
     <tr>
-        <td>Weight:<input type="number" name="weight"><td>
+        <td>Weight:<input type="text" name="weight"><td>
     </tr>
     <tr>
-        <td>Heavyweight:<input type="number" name="heavyweight"><td>
+        <td>Heavyweight:<input type="text" name="heavyweight"><td>
     </tr>
     <tr>
-        <td>MaxDistance:<input type="number" name="maxdistance"><td>
+        <td>MaxDistance:<input type="text" name="maxdistance"><td>
     </tr>
     <tr>
-        <td>MaxHeight:<input type="number" name="maxheight"><td>
+        <td>MaxHeight:<input type="text" name="maxheight"><td>
     </tr>
-    <tr>
-        <td>Licensepilot:<input type="text" name="licensepilot"><td>
-    </tr>
+<!--     <tr> -->
+<!--         <td>Licensepilot:<input type="text" name="licensepilot" value=$license><td> -->
+<!--     </tr> -->
     <tr>
         <td>Battery:<input type="text" name="battery"><td>
     </tr>

@@ -71,4 +71,11 @@ public class Device {
         this.checkDevice = checkDevice;
     }
 
+	@Override
+	public String toString() {
+		return "Device [idDevice=" + idDevice + ", model=" + model + ", type=" + type + ", weight=" + weight
+				+ ", producer=" + producer + ", pilotLicense=" + pilotLicense + ", checkDevice=" + checkDevice + "]";
+	}
+
+    
 }
