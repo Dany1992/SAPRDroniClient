@@ -1,0 +1,67 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19-gen-2017, 22.38.47
+    Author     : pierfrancescotommasino
+*/
+
+body {
+    background-color: white;
+    background-image: url("drone.jpg");
+    background-repeat: no-repeat;
+    boz-background-size: cover;
+    -webkit-background-size: cover;ackground-position: 0 0;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+    font: bold 15px/1.5 Georgia, "Times New Roman", serif;
+    color: black;
+}
+
+
+h1{text-align: center;
+    color: #F44336;
+}
+
+#submit{
+    margin-left: 10px;
+}
+
+table {
+   border: 1px solid rgb(153,153,153);
+   background-color: white;
+}
+
+td{
+    color: rgb(153,153,153);
+}
+
+h2{
+    color: #F44336;
+}
+
+
+thead tr th{
+    color: black;
+}
+
+.modal-backdrop.in{
+    opacity: .1;
+}
+
+#succ{
+    margin-left: 10px;
+}
+
+.btn{
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+
+#tav>thead>tr>th {
+    padding: 2px;
+}

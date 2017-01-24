@@ -21,8 +21,9 @@ import it.uniroma2.sapr.service.SAPRDroniInterface;
 import it.uniroma2.saprClient.view.FlightPlan;
 import it.uniroma2.saprClient.view.FlightPlanWrapper;
 import it.uniroma2.saprClient.view.Pilot;
-import it.uniroma2.saprClient.view.Sapr;
 import it.uniroma2.saprClient.view.Device;
+import it.uniroma2.saprClient.view.Sapr;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -35,7 +36,8 @@ public class ManageServiceImpl implements ManageService {
 		String method = "ManageServiceImpl";
 		URL urlService = null;
 		try {
-			urlService = new URL("http://188.166.44.110:8080/SAPR/SAPRService?wsdl");
+                        urlService = new URL("http://localhost:9999/ws/sapr?wsdl");
+			//urlService = new URL("http://188.166.44.110:8080/SAPR/SAPRService?wsdl");
 		} catch (MalformedURLException e) {
 			logger.info(String.format("Class:%s-Method:%s::Error url[%s]", clazz,method,e.toString()));
 			e.printStackTrace();
@@ -85,7 +87,7 @@ public class ManageServiceImpl implements ManageService {
 		logger.info(String.format("Class:%s-Method:%s::END with result[%b]", clazz,method,result));
 		return result;
 	}
-	
+
 	public Boolean addSapr(Sapr sapr) {
 		String method = "addSapr";
 		System.out.println(String.format("Class:%s-Method:%s::START ", clazz,method));
@@ -426,6 +428,26 @@ public class ManageServiceImpl implements ManageService {
 		
 		flightPlan.setDevices(devices);
 	}
+        
+        public ArrayList<ResponseFlightPlan> getFlightPlanBySapr(int idSapr) {
+		String method = "getFlightPlanBySapr";
+		ArrayList<ResponseFlightPlan> result;
+		logger.info(String.format("Class:%s-Method:%s::START with dates[%s]", clazz,method,idSapr));
+		//RequestFlightPlan rq = new RequestFlightPlan();
+		//buildMapFlightPlan(p, rq);
+		
+		try {
+			result = (ArrayList<ResponseFlightPlan>) service.getFlightPlanBySapr(idSapr);
+			logger.info(String.format("Class:%s-Method:%s:: Call to WebService Success", clazz,method,result));
+		} catch (Exception_Exception e) {
+			System.out.println(e.toString());
+			logger.info(String.format("Class:%s-Method:%s:: Call to WebService error[%s]", clazz,method,e.toString()));
+			result = null;
+		}
+		
+		logger.info(String.format("Class:%s-Method:%s::END with result[%b]", clazz,method,result));
+		return result;
+        }
 	
 	public ArrayList<ResponseSapr> getSAPRs(Opzione op){
 		String method = "getSAPRs";
