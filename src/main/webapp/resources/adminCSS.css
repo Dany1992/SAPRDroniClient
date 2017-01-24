@@ -43,10 +43,15 @@ a:hover{
 
 .portfolio-item{
     text-align: center;
-    height: 200px;   
-    
+    height: 200px;
+    background-color: rgba(158,158,158,0.5);
+    margin-left: 10px;
 }
 
 .portfolio-item a{
-    color: #42A5F5;
+    color: #424242;
+}
+
+.portfolio-item a:hover{
+    text-decoration: underline;
 }
