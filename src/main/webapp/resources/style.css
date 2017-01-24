@@ -43,3 +43,25 @@ h2{
     color: #F44336;
 }
 
+
+thead tr th{
+    color: black;
+}
+
+.modal-backdrop.in{
+    opacity: .1;
+}
+
+#succ{
+    margin-left: 10px;
+}
+
+.btn{
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+
+#tav>thead>tr>th {
+    padding: 2px;
+}

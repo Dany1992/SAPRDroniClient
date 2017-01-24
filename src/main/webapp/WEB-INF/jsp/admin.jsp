@@ -28,7 +28,7 @@
     <div class="row col-lg-6">
         <div class="portfolio-item">
             <h3>                   
-                <a href="/SAPRClient/addPilot">Add Pilot</a>
+                <a href="/SAPRClient/addPilot">Add new Pilot</a>
             </h3>
                 <p>In this section you may add new pilot.</p>
         </div>
