@@ -30,7 +30,7 @@
             <h3>                   
                 <a href="/SAPRClient/addPilot">Add new Pilot</a>
             </h3>
-                <p>In this section you may add new pilot.</p>
+                <p>In this section you can fill the fields, then enter a new pilot</p>
         </div>
     </div>
             
@@ -40,7 +40,7 @@
             <h3>
                 <a href="/SAPRClient/removePilot">Delete Pilot</a>
             </h3>
-            <p>In this section you may delete new pilot.</p>
+            <p>In this section you may delete pilot simply inserting pilot's licence that you want to delete.</p>
         </div>
     </div> 
         

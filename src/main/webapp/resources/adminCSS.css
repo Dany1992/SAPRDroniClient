@@ -36,3 +36,17 @@ a{
 a:hover{
     text-decoration: none;
 }
+
+.page-header{
+    color: rgb(252,100,95);
+}
+
+.portfolio-item{
+    text-align: center;
+    height: 200px;   
+    
+}
+
+.portfolio-item a{
+    color: #42A5F5;
+}

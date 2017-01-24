@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<<<<<<< HEAD
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-=======
->>>>>>> master
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
@@ -14,11 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-<<<<<<< HEAD
-<spring:url value="/resources/adminCSS.css" var="styleCSS" />
-=======
 <spring:url value="/resources/style.css" var="styleCSS" />
->>>>>>> master
 <link href="${styleCSS}" rel="stylesheet" />
 <title>AddSapr</title>
 </head>
