@@ -1,0 +1,57 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23-gen-2017, 11.38.23
+    Author     : Tiziano
+*/
+
+body{
+    background-image: url("Background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#mainTest{
+    text-align: center;
+    color: rgb(252,100,95);
+}
+
+.formPilot{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.formPilot p{
+    text-align: center;
+    font-weight: bold;
+}
+
+a{
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.page-header{
+    color: rgb(252,100,95);
+}
+
+.portfolio-item{
+    text-align: center;
+    height: 200px;
+    background-color: rgba(158,158,158,0.5);
+    margin-left: 10px;
+}
+
+.portfolio-item a{
+    color: #424242;
+}
+
+.portfolio-item a:hover{
+    text-decoration: underline;
+}

@@ -336,8 +336,9 @@ public class SAPRClientController {
 	
 	
     @RequestMapping(value = "/removeFlightPlan", method = RequestMethod.GET)
-	public ModelAndView removeFlightPlan(){
-		return new ModelAndView("removeFlightPlan", "command", new FlightPlan());
+	public ModelAndView removeFlightPlan(HttpServletRequest servlet){
+            String licensePilot = (String) servlet.getSession().getAttribute("license");
+            return new ModelAndView("removeFlightPlan", "command", new FlightPlan());
 	}
 	
 	@RequestMapping(value = "/removedFlightPlan", method = RequestMethod.POST)
