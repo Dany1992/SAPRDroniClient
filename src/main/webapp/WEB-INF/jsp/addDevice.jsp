@@ -20,6 +20,10 @@
 <form:form method="POST" action="/SAPRClient/addedDevice">
         <h2>Enter Data of Device: </h2>
   <div class="form-group col-xs-12 col-lg-6">
+    <label>Id Device</label>
+    <input type="number" class="form-control" name="idDevice" placeholder="Enter idDevice">
+  </div>
+  <div class="form-group col-xs-12 col-lg-6">
     <label>Model</label>
     <input type="text" class="form-control" name="model" placeholder="Enter Model">
   </div>

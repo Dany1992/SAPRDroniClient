@@ -1,6 +1,5 @@
 package it.uniroma2.saprClient.controller;
 
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import it.uniroma2.sapr.service.Opzione;
 import org.apache.log4j.Logger;
 //import org.eclipse.jdt.internal.compiler.ast.AND_AND_Expression;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import it.uniroma2.sapr.service.Opzione;
 import it.uniroma2.sapr.service.ResponseDevice;
 import it.uniroma2.sapr.service.ResponseSapr;
 import it.uniroma2.saprClient.model.ManageService;
@@ -39,9 +37,6 @@ import javax.servlet.http.HttpSession;
 public class SAPRClientController {
 	private static String clazz = "SAPRClientController";
 	private static Logger log = Logger.getRootLogger();
-	private static final AtomicInteger idSaprCounter = new AtomicInteger();
-	private static final AtomicInteger idNoteCounter = new AtomicInteger();
-	private static final AtomicInteger idDeviceCounter = new AtomicInteger();
 	
         /*
 	@RequestMapping(value = "/pilot", method = RequestMethod.GET)
@@ -108,17 +103,17 @@ public class SAPRClientController {
 	            arr_ck.add(request.getParameter("check3"));
 	            arr_ck.add(request.getParameter("check4"));
 	            arr_ck.add(request.getParameter("check5"));
-                    arr_ck.add(request.getParameter("check6"));
-                    arr_ck.add(request.getParameter("check7"));
-                    arr_ck.add(request.getParameter("check8"));
-                    arr_ck.add(request.getParameter("check9"));
-                    arr_ck.add(request.getParameter("check10"));
-	            System.out.println("id sapr" + idSaprCounter.get());
-	            sapr.setIdSapr(idSaprCounter.getAndIncrement());
+                arr_ck.add(request.getParameter("check6"));
+                arr_ck.add(request.getParameter("check7"));
+                arr_ck.add(request.getParameter("check8"));
+                arr_ck.add(request.getParameter("check9"));
+                arr_ck.add(request.getParameter("check10"));
+	            sapr.setIdSapr(Integer.parseInt(request.getParameter("idSapr")));
 	            sapr.setModel(request.getParameter("model"));
 	            sapr.setProducer(request.getParameter("producer"));
 	            sapr.setPilotLicense(licensePilot);
-	            sapr.setWeight(Integer.parseInt(request.getParameter("weight")));	            
+	            sapr.setWeight(Integer.parseInt(request.getParameter("weight")));
+	            System.out.println("doopo il peso");
 	            sapr.setHeavyweight(Integer.parseInt(request.getParameter("heavyweight")));	
 	            sapr.setMaxDistance(Integer.parseInt(request.getParameter("maxdistance")));
 	            sapr.setMaxHeight(Integer.parseInt(request.getParameter("maxheight")));
@@ -193,7 +188,7 @@ public class SAPRClientController {
             arr_ck.add(request.getParameter("check9"));
             arr_ck.add(request.getParameter("check10"));
             
-            device.setIdDevice(idDeviceCounter.getAndIncrement());
+            device.setIdDevice(Integer.parseInt(request.getParameter("idDevice")));
             device.setModel(request.getParameter("model"));
             device.setPilotLicense(licensePilot);
             device.setProducer(request.getParameter("producer"));
@@ -261,7 +256,6 @@ public class SAPRClientController {
 	public String addedFlightPlan(HttpServletRequest request, ModelMap model){
 		ManageService ms = new ManageServiceImpl();
 		FlightPlan flightPlan = new FlightPlan();
-		flightPlan.setIdNote(idSaprCounter.getAndIncrement());
 		ms.setFlightPlan(request,flightPlan);
 		
 		Boolean result = ms.addFlightPlan(flightPlan);
@@ -383,7 +377,6 @@ public class SAPRClientController {
                 for(int i=0;i<sapr.size();i++){
                     flightSapr.add(new FlightPlanPilot(ms.getFlightPlanBySapr(sapr.get(i).getIdSapr()),sapr.get(i)));
                 }
-                System.out.println(flightSapr);
                 return new ModelAndView("pilot","model",flightSapr);
 	}
 

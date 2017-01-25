@@ -9,8 +9,8 @@ and open the template in the editor.
 */
 
 body {
-    background-color: white;
-    background-image: url("drone.jpg");
+    background-color: #95C5D5;
+    background-image: url("sfondo1.jpg");
     background-repeat: no-repeat;
     boz-background-size: cover;
     -webkit-background-size: cover;ackground-position: 0 0;

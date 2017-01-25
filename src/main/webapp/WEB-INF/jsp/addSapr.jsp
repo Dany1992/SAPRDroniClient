@@ -20,6 +20,10 @@
 	<form:form method="POST" action="/SAPRClient/addedSapr">
     <h2>Enter Data of FlightPlan: </h2>
   <div class="form-group col-xs-12 col-lg-6">
+    <label>IDSapr</label>
+    <input type="text" class="form-control" name="idSapr" placeholder="Enter IDSapr">
+  </div>
+  <div class="form-group col-xs-12 col-lg-6">
     <label>Model</label>
     <input type="text" class="form-control" name="model" placeholder="Enter Model">
   </div>
@@ -29,7 +33,7 @@
   </div>
   <div class="form-group col-xs-12 col-lg-6">
     <label>Weight</label>
-    <input type="number" class="form-control" name="Weight" placeholder="Enter Weight">
+    <input type="number" class="form-control" name="weight" placeholder="Enter Weight">
   </div>
   <div class="form-group col-xs-12 col-lg-6">
     <label>Heavyweight</label>
