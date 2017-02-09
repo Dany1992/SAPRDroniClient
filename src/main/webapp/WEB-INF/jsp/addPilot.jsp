@@ -54,8 +54,82 @@
                 <p>Password</p><input class="form-control" type="password" name="password" required>
             </div>
             <script>
-				$("saprForm").validate();
-			</script>  
+                $("#saprForm").validate(){
+                    rules: {
+                        name: {
+                            required: true
+                        },
+                        surname: {
+                            required: true
+                        },
+                        nation: {
+                            required: true
+                        },
+                        state: {
+                            required: true
+                        },
+                        licensepilot: {
+                            required: true,
+                            maxlength: 10,
+                            minlength: 10
+                        },
+                        taxcode: {
+                            required: true
+                        },
+                        residence: {
+                            required: true
+                        },
+                        phone: {
+                            required: true
+                        },
+                        mail: {
+                            required: true,
+                            email: true
+                        },
+                        password: {
+                            required: true,
+                            minlength: 4
+                        }
+                    }
+                    messages: {
+                        name: {
+                            required: "Campo Obbligatorio"
+                        },
+                        surname: {
+                            required: "Campo Obbligatorio"
+                        },
+                        nation: {
+                            required: "Campo Obbligatorio"
+                        },
+                        state: {
+                            required: "Campo Obbligatorio"
+                        },
+                        licensepilot: {
+                            required: "Campo Obbligatorio",
+                            maxlength: "Inserire esattamente 10 caratteri",
+                            minlength: "Inserire esattamente 10 caratteri"
+                        },
+                        taxcode: {
+                            required: "Campo Obbligatorio"
+                        },
+                        residence: {
+                            required: "Campo Obbligatorio"
+                        },
+                        phone: {
+                            required: "Campo Obbligatorio"
+                        },
+                        mail: {
+                            required: "Campo Obbligatorio",
+                            email: "Inserire un'email valida"
+                        },
+                        password: {
+                            required: "Campo Obbligatorio",
+                            minlength: "Inserire almeno 4 caratteri"
+                        }
+                    }
+
+                };
+            </script>  
             <div class="formPilot  col-xs-12 col-lg-12">
                 <input class="btn btn-success col-xs-12 col-lg-12" type="submit" value="Submit"/>
             </div>

@@ -27,6 +27,30 @@
             <div class="formPilot  col-xs-12 col-lg-12">
                 <input class="btn btn-success col-xs-12 col-lg-12" type="submit" value="Submit"/>
             </div>
+            <script>
+                $("#mainTest").validate(){
+                    rules: {
+                        license : {
+                            //remote: "url",
+                            required: true
+                        },
+                        password : {
+                            //remote: "url",
+                            required: true
+                        }
+                    }
+                    messages: {
+                        license : {
+                            //remote: "Pilota non esistente"
+                            required: "Inserisci Licenza"
+                        },
+                        password : {
+                            //remote: "Email non corretta"
+                            required: "Inserisci Password"
+                        }
+                    }
+                }
+            </script>
         </form:form>
     </body>
 </html>

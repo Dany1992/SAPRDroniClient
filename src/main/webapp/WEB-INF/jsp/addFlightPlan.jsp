@@ -111,7 +111,57 @@
                                                     </table>
 </div>
 <script>
-$("formFlight").validate();
+$("#formFlight").validate(){
+rules: {
+    flight.destinations : {
+        required: true
+    },
+    flight.departure : {
+        required: true
+    },
+    flight.dateDeparture : {
+        required: true,
+        date: true
+    },
+    flight.timeDeparture : {
+        required: true
+    },
+    flight.nowArriving : {
+        required: true
+    },
+    flight.idSapr : {
+        required: true
+    },
+    flight.devices : {
+        required: true
+    }
+}
+messages: {
+    flight.destinations : {
+        required: "Campo Obbligatorio"
+    },
+    flight.departure : {
+        required: "Campo Obbligatorio"
+    },
+    flight.dateDeparture : {
+        required: "Campo Obbligatorio",
+        date: "Inserire una data valida"
+    },
+    flight.timeDeparture : {
+        required: "Campo Obbligatorio"
+    },
+    flight.nowArriving : {
+        required: "Campo Obbligatorio"
+    },
+    flight.idSapr : {
+        required: "Selezionare un drone"
+    },
+    flight.devices : {
+        required: "Seleziona almeno un dispositivo"
+    }
+}
+
+};
 </script>  
 
     <input type="submit" value="Submit" class="btn-success" id="submit"/>

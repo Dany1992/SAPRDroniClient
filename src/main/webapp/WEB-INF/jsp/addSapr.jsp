@@ -95,7 +95,70 @@
     <input type="text" class="form-control" name="check10" placeholder="Enter CheckElement">
   </div>
 <script>
-$("saprForm").validate();
+$("#saprForm").validate(){
+rules: {
+    idSapr: {
+        required: true
+    },
+    model: {
+        required: true
+    },
+    producer: {
+        required: true
+    },
+    weight: {
+        required: true
+    },
+    heavyweight: {
+        required: true
+    },
+    maxdistance: {
+        required: true,
+        max: 2000
+    },
+    maxheight: {
+        required: true,
+        max: 500
+    },
+    battery: {
+        required: true
+    },
+    check1: {
+        required: true
+    }
+}
+messages: {
+    idSapr: {
+        required: "Campo Obbligatorio"
+    },
+    model: {
+        required: "Campo Obbligatorio"
+    },
+    producer: {
+        required: "Campo Obbligatorio"
+    },
+    weight: {
+        required: "Campo Obbligatorio"
+    },
+    heavyweight: {
+        required: "Campo Obbligatorio"
+    },
+    maxdistance: {
+        required: "Campo Obbligatorio",
+        max: "Non è permesso fare una tratta così lunga"
+    },
+    maxheight: {
+        required: "Campo Obbligatorio",
+        max: "Non puoi superare i 500 metri di altezza"
+    },
+    battery: {
+        required: "Campo Obbligatorio"
+    },
+    check1: {
+        required: "Campo Obbligatorio"
+    }
+}
+};
 </script>  
 <input type="submit" value="Submit" class="btn-success col-xs-12 col-lg-12" id="submit"/>
 </form:form>
