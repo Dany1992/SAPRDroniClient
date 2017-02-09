@@ -82,7 +82,48 @@
     <input type="text" class="form-control" name="check10" placeholder="Enter CheckElement">
   </div>
   <script>
-	$("formDevice").validate();
+	$("#formDevice").validate(){
+            rules: {
+                idDevice: {
+                    required: true
+                },
+                model: {
+                    required: true
+                },
+                producer: {
+                    required: true
+                },
+                type: {
+                    required: true 
+                },
+                weight: {
+                    required: true
+                },
+                check1: {
+                    required: true
+                }
+            }
+            messages: {
+                idDevice: {
+                    required: "Campo Obbligatorio"
+                },
+                model: {
+                    required: "Campo Obbligatorio"
+                },
+                producer: {
+                    required: "Campo Obbligatorio"
+                },
+                type: {
+                    required: "Campo Obbligatorio"
+                },
+                weight: {
+                    required: "Campo Obbligatorio"
+                },
+                check1: {
+                    required: "Campo Obbligatorio"
+                }
+            }
+        };
 	</script>  
   
   <input type="submit" value="Submit" class="btn-success col-xs-12 col-lg-12" id="submit"/>

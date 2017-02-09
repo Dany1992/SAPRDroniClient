@@ -79,7 +79,7 @@ public class SAPRClientController {
 		
 		if (pilot.getPassword().equals(password)){
 			System.out.println("equals password");
-			if (license.equals("0000000001")){
+			if (license.equals("000000000")){
 				return "admin";
 			}else{
 				HttpSession session = request.getSession(true);
