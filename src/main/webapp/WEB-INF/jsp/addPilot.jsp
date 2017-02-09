@@ -19,7 +19,7 @@
 </head>
     <body>
         <h1 id="mainTest" class="col-xs-12">Complete form for inser new pilot</h1>
-	<form:form method="POST" action="/SAPRClient/addedPilot">
+	<form:form method="POST" id="addPilotForm" action="/SAPRClient/addedPilot">
             <div class="formPilot col-xs-12 col-lg-6">
                 <p>Name</p> <input class="form-control" type="text" name="name" required>
             </div>
@@ -33,7 +33,7 @@
                 <p>State</p><input class="form-control" type="text" name="state" required>
             </div>
             <div class="formPilot col-xs-12 col-lg-6">
-                <p>LicensePilot</p><input class="form-control" type="text" name="licensepilot" required>
+                <p>LicensePilot</p><input class="form-control" type="number" name="licensepilot" required>
             </div>
             <div class="formPilot col-xs-12 col-lg-6">
                 <p>TaxCode</p><input class="form-control" type="text" name="taxcode" required>
@@ -53,12 +53,12 @@
             <div class="formPilot col-xs-12 col-lg-6">
                 <p>Password</p><input class="form-control" type="password" name="password" required>
             </div>
-            <script>
-				$("saprForm").validate();
-			</script>  
             <div class="formPilot  col-xs-12 col-lg-12">
-                <input class="btn btn-success col-xs-12 col-lg-12" type="submit" value="Submit"/>
+                <input class="btn btn-success col-xs-12 col-lg-12" type="submit" name="button" value="Submit"/>
             </div>
+            <script>
+				$("#addPilotForm").validate();
+			</script>  
         </form:form>
     </body>
 </html>

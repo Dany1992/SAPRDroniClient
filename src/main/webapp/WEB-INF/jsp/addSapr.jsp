@@ -12,14 +12,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 <spring:url value="/resources/style.css" var="styleCSS" />
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+<!-- <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script> -->
+<script src="/SAPRClient/resources/minJquery.js"></script>
+<script src="/SAPRClient/resources/validationJquery.js"></script>
 <link href="${styleCSS}" rel="stylesheet" />
 <title>AddSapr</title>
 </head>
 <body>
 	<h1>Welcome ${license}</h1>
 	<h2>Add new sapr</h2>
+
 	<form:form method="POST" id="saprForm" action="/SAPRClient/addedSapr" >
     <h2>Enter Data of FlightPlan: </h2>
   <div class="form-group col-xs-12 col-lg-6">
@@ -94,10 +97,10 @@
     <label>CheckElement</label>
     <input type="text" class="form-control" name="check10" placeholder="Enter CheckElement">
   </div>
-<script>
-$("saprForm").validate();
-</script>  
-<input type="submit" value="Submit" class="btn-success col-xs-12 col-lg-12" id="submit"/>
+	<input type="submit" name="button" value="Submit" class="btn-success col-xs-12 col-lg-12" id="submit"/>
+ 	<script>
+$("#saprForm").validate();
+</script> 
 </form:form>
 </body>
 </html>

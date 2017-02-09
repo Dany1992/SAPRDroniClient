@@ -111,10 +111,10 @@
                                                     </table>
 </div>
 <script>
-$("formFlight").validate();
+$("#formFlight").validate();
 </script>  
 
-    <input type="submit" value="Submit" class="btn-success" id="submit"/>
+    <input type="submit" name="button" value="Submit" class="btn-success" id="submit"/>
 </form:form>
 </body>
 </html>
