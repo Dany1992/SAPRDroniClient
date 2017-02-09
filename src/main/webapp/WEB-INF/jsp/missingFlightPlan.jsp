@@ -4,10 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Active SAPR</title>
+<title>Warning</title>
 </head>
 <body>
-	<h1>All SAPR are active</h1>
-	<a href="/SAPRClient/admin">IndexAdmin</a>
+<pre>
+<h3>
+For create a Flight Plan you must:
+	1. Add at least SAPR
+	2. Add at least Device
+</h3>
+</pre>
+<a href="/SAPRClient/pilot">IndexPilot</a>
 </body>
 </html>

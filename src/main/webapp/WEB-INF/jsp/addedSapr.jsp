@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h2>Sapr ${idSapr}: ${model} ${producer} of ${licensepilot} added with success!!!</h2>
+	<a href="/SAPRClient/pilot">IndexPilot</a>
 </body>
 </html>

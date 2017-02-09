@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Active SAPR</title>
+<title>Error</title>
 </head>
 <body>
-	<h1>All SAPR are active</h1>
-	<a href="/SAPRClient/admin">IndexAdmin</a>
+	<h1>The license or password is incorrect</h1>
+	<a href="/SAPRClient/login">IndexLogin</a>
 </body>
 </html>

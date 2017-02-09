@@ -9,6 +9,6 @@
 <body>
 	<h2>Device ${id}: ${model} - ${producer} of ${licensepilot} error registration</h2>
         <p>mi dispiace :(</p>
-	
+	<a href="/SAPRClient/pilot">IndexPilot</a>
 </body>
 </html>

@@ -12,5 +12,6 @@
     	${listValue.idSapr}
     	<br>
     </c:forEach>
+    <a href="/SAPRClient/admin">IndexAdmin</a>
 </body>
 </html>

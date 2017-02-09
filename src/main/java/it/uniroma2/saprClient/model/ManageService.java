@@ -3,6 +3,7 @@ package it.uniroma2.saprClient.model;
 import it.uniroma2.sapr.service.Opzione;
 import it.uniroma2.sapr.service.ResponseDevice;
 import it.uniroma2.sapr.service.ResponseFlightPlan;
+import it.uniroma2.sapr.service.ResponsePilot;
 import it.uniroma2.sapr.service.ResponseSapr;
 import it.uniroma2.saprClient.view.Device;
 import it.uniroma2.saprClient.view.FlightPlan;
@@ -31,4 +32,5 @@ public interface ManageService {
 	public void setFlightPlan(HttpServletRequest request, FlightPlan flightPlan);
 	public ArrayList<ResponseSapr> getSAPRs(Opzione op);
 	public ArrayList<String> setAndActiveSaprs(String[] listSapr);
+	public ResponsePilot getPilot(String licensePilots);
 }

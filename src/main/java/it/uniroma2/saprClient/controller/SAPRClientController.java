@@ -5,12 +5,14 @@ import org.apache.log4j.Logger;
 //import org.eclipse.jdt.internal.compiler.ast.AND_AND_Expression;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import it.uniroma2.sapr.service.ResponseDevice;
+import it.uniroma2.sapr.service.ResponsePilot;
 import it.uniroma2.sapr.service.ResponseSapr;
 import it.uniroma2.saprClient.model.ManageService;
 import it.uniroma2.saprClient.model.ManageServiceImpl;
@@ -18,6 +20,7 @@ import it.uniroma2.saprClient.view.Device;
 import it.uniroma2.saprClient.view.FlightPlan;
 import it.uniroma2.saprClient.view.FlightPlanPilot;
 import it.uniroma2.saprClient.view.FlightPlanWrapper;
+import it.uniroma2.saprClient.view.LoginBean;
 import it.uniroma2.saprClient.view.Pilot;
 import it.uniroma2.saprClient.view.Sapr;
 import java.util.ArrayList;
@@ -26,6 +29,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 /**
  * Questa classe è il controllere dell' MVC. Ogni richiesta deve passare per questo controller
@@ -48,10 +52,44 @@ public class SAPRClientController {
 		return "pilot";
 	}
 	*/
-        
+	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String redirectAdmin(HttpServletRequest request) {
 		return "admin";
+	}
+        
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView login(){
+		//addPilot è il nome della pagin, command è il nome dell'oggetto pilot nella view
+		return new ModelAndView("login", "command", new LoginBean());
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String executelogin(HttpServletRequest request) {
+		String license = request.getParameter("license");
+		String password = request.getParameter("password");
+		System.out.println("Request: license-->" + license + "pass-->" + password);
+		
+		ManageService ms = new ManageServiceImpl();
+		ResponsePilot pilot = ms.getPilot(license);
+		
+		if (pilot == null){
+			return "errorLogin";
+		}
+		
+		if (pilot.getPassword().equals(password)){
+			System.out.println("equals password");
+			if (license.equals("0000000001")){
+				return "admin";
+			}else{
+				HttpSession session = request.getSession(true);
+                session.setAttribute("license", license);
+				return "pilot";
+			}
+		}else{
+			return "errorLogin";
+		}
+		
 	}	
 	
 	@RequestMapping(value = "/addPilot", method = RequestMethod.GET)
@@ -61,13 +99,18 @@ public class SAPRClientController {
 	}
 	 
 	@RequestMapping(value = "/addedPilot", method = RequestMethod.POST)
-	public String addedPilot(@ModelAttribute("addPilot")Pilot pilot, ModelMap model){
+	public String addedPilot(@ModelAttribute("addPilot") @Valid Pilot pilot, BindingResult bindingResult,ModelMap model){
 		String method = "addedPilot";
 		log.debug(String.format("%s-%s:: Start", clazz,method));
+		System.out.println("binding " + bindingResult.toString());
+		if (bindingResult.hasErrors()) {
+            return "addPilot";
+        }
+
 		ManageService ms = new ManageServiceImpl();
 		Boolean result = ms.addPilot(pilot);
 		System.out.println("result-->:" + result);
-//		log.debug(String.format("%s-%s:: Result [%b]", clazz,method,result));
+		log.debug(String.format("%s-%s:: Result [%b]", clazz,method,result));
 		if (result){
 			model.addAttribute("name",pilot.getName());
 			model.addAttribute("surname",pilot.getSurname());
@@ -248,7 +291,11 @@ public class SAPRClientController {
 		ManageService ms = new ManageServiceImpl();
 		String licensePilot = (String) servlet.getSession().getAttribute("license");
 		FlightPlanWrapper flight = ms.popoulateFlighPlanWrapper(licensePilot);
-		return new ModelAndView("addFlightPlan","model", flight);
+		if (flight.getSaprsOfPilot().isEmpty() || flight.getDevicesOfPilot().isEmpty()){
+			return new ModelAndView("missingFlightPlan","model", flight);
+		}else{
+			return new ModelAndView("addFlightPlan","model", flight);
+		}
 	}
 
 
@@ -366,14 +413,17 @@ public class SAPRClientController {
 		//TODO: Qui serve richiamare il webService per farsi dare la lista dei piani di volo del pilota che prendo il suo Id tramite Session che andrà
                 //prima eseguo la query dei sapr del pilot e poi mi faccio ritornare i piani di volo di tutti i SAPR del Pilot
 		ArrayList<FlightPlanPilot> flightSapr = new ArrayList<FlightPlanPilot>();
-                String licensePilot = (String) request.getSession().getAttribute("license");
-                if(licensePilot==null){
+                String licensePilot = request.getParameter("license");
+                System.out.println("license: " + licensePilot);
+                if(licensePilot!=null){
                     HttpSession session = request.getSession(true);
                     session.setAttribute("license", request.getParameter("license"));
                     System.out.println("license = " + request.getParameter("license"));
                     licensePilot=request.getParameter("license");
                 }
-                ManageService ms = new ManageServiceImpl(); 
+                ManageService ms = new ManageServiceImpl();
+                //prendo la licenza dal pilota dalla sessione
+                licensePilot = (String) request.getSession().getAttribute("license");
                 ArrayList<ResponseSapr> sapr=ms.getSaprsOfPilot(Opzione.ENABLED,licensePilot);
                 for(int i=0;i<sapr.size();i++){
                     flightSapr.add(new FlightPlanPilot(ms.getFlightPlanBySapr(sapr.get(i).getIdSapr()),sapr.get(i)));

@@ -16,6 +16,7 @@ import it.uniroma2.sapr.service.RequestPilot;
 import it.uniroma2.sapr.service.RequestSAPR;
 import it.uniroma2.sapr.service.ResponseDevice;
 import it.uniroma2.sapr.service.ResponseFlightPlan;
+import it.uniroma2.sapr.service.ResponsePilot;
 import it.uniroma2.sapr.service.ResponseSapr;
 import it.uniroma2.sapr.service.SAPRDroniInterface;
 import it.uniroma2.saprClient.view.FlightPlan;
@@ -36,8 +37,8 @@ public class ManageServiceImpl implements ManageService {
 		String method = "ManageServiceImpl";
 		URL urlService = null;
 		try {
-//            urlService = new URL("http://localhost:9999/ws/sapr?wsdl");
-			urlService = new URL("http://188.166.44.110:8080/SAPR/SAPRService?wsdl");
+            urlService = new URL("http://localhost:9999/ws/sapr?wsdl");
+//			urlService = new URL("http://188.166.44.110:8080/SAPR/SAPRService?wsdl");
 		} catch (MalformedURLException e) {
 			logger.info(String.format("Class:%s-Method:%s::Error url[%s]", clazz,method,e.toString()));
 			e.printStackTrace();
@@ -490,5 +491,19 @@ public class ManageServiceImpl implements ManageService {
 		
 		return saprNotActivated;
 	}
+
+	public ResponsePilot getPilot(String licensePilots) {
+		ResponsePilot resp = null;
+		try {
+			resp = service.getPilot(licensePilots);
+		} catch (Exception_Exception e) {
+			logger.info(String.format("Error[%s]",e.toString()));
+			System.out.println("Error:" + e.toString());
+			e.printStackTrace();
+		}
+		return resp;
+	}
+	
+	
 	
 }

@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h2>Device ${id}: ${model} - ${producer} of ${license} registration success!!!</h2>
+	<a href="/SAPRClient/pilot">IndexPilot</a>
 </body>
 </html>

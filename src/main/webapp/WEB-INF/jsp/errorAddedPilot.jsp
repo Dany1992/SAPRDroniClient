@@ -8,6 +8,6 @@
 </head>
 <body>
 	<h2>Pilot ${surname} ${name} with license code: ${license} error registration</h2>
-	
+	<a href="/SAPRClient/admin">IndexAdmin</a>
 </body>
 </html>

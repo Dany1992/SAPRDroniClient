@@ -18,34 +18,36 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 <spring:url value="/resources/style.css" var="styleCSS" />
 <link href="${styleCSS}" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
 <title>AddFlightPlan</title>
 </head>
 <body>
 <h1>Welcome ${license}</h1>
 <h1>ADD NEW FLIGHTPLAN</h1>
-<form:form method="POST" action="/SAPRClient/addedFlightPlan">
+<form:form method="POST" id="formFlight" action="/SAPRClient/addedFlightPlan">
  
  <div class="col-xs-6">
     <h2>Enter Data of FlightPlan: </h2>
   <div class="form-group">
     <label>Destinations</label>
-    <input type="text" class="form-control" name="flight.destinations" placeholder="Enter destinations">
+    <input type="text" class="form-control" name="flight.destinations" placeholder="Enter destinations" required>
   </div>
   <div class="form-group">
     <label>Departure</label>
-    <input type="text" class="form-control" name="flight.departure" placeholder="Enter departure">
+    <input type="text" class="form-control" name="flight.departure" placeholder="Enter departure" required>
   </div>
   <div class="form-group">
     <label>DateDeparture</label>
-    <input type="date" class="form-control" name="flight.dateDeparture">
+    <input type="date" class="form-control" name="flight.dateDeparture" required>
   </div>
   <div class="form-group">
     <label>TimeDeparture</label>
-    <input size="8" type="text" value="00:00:00" class="form-control" name="flight.timeDeparture" > 
+    <input size="8" type="text" value="00:00:00" class="form-control" name="flight.timeDeparture" required> 
   </div>
   <div class="form-group">
     <label>NowArriving</label>
-    <input size="8" type="text" value="00:00:00" class="form-control" name="flight.nowArriving">
+    <input size="8" type="text" value="00:00:00" class="form-control" name="flight.nowArriving" required>
   </div>
  </div>
 <div id="sapr" class="col-xs-6">
@@ -68,7 +70,7 @@
 			      
 						    <tbody>
 						      <tr>
-                                                        <td><input type="radio" class="form-check-input" name="flight.idSapr" id="optionsRadios1" value="${listValue.idSapr}"></td>
+                                                        <td><input type="radio" class="form-check-input" name="flight.idSapr" id="optionsRadios1" value="${listValue.idSapr}" required></td>
 						        <td>${listValue.producer}</td>
 						        <td>${listValue.model}</td>
 						        <td>${listValue.weight}</td>
@@ -97,7 +99,7 @@
 	    <c:forEach var="listValue" items="${model.devicesOfPilot}">
 						    <tbody>
 						      <tr>
-                                                        <td> <input type="checkbox" value="${listValue.idDevice}" name="flight.devices"></td>
+                                                        <td> <input type="checkbox" value="${listValue.idDevice}" name="flight.devices" required></td>
 						        <td>${listValue.model}</td>
 						        <td>${listValue.type}</td>
 						        <td>${listValue.weight}</td>
@@ -108,6 +110,10 @@
 	  </c:forEach>
                                                     </table>
 </div>
+<script>
+$("formFlight").validate();
+</script>  
+
     <input type="submit" value="Submit" class="btn-success" id="submit"/>
 </form:form>
 </body>

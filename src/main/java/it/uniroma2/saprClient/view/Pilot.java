@@ -1,17 +1,34 @@
 package it.uniroma2.saprClient.view;
 
+
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+
 public class Pilot {
 	
+	@NotNull
 	protected String name;
+	@NotNull
 	protected String surname;
+	@NotNull
 	protected String nation;
+	@NotNull
 	protected String state;
+	@NotNull
 	protected String licensepilot;
+	@NotNull
 	protected String taxcode;
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	protected String birthdate;
+	@NotNull
 	protected String residence;
+	@NotNull
 	protected String phone;
+	@NotNull
 	protected String mail;
+	@NotNull
 	protected String password;
 	public String getName() {
 		return name;
