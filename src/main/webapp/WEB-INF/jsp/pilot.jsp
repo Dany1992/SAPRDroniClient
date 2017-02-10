@@ -110,5 +110,11 @@ $(function(){
 <button type="button" class="btn btn-warning"><a href="/SAPRClient/addDevice">Add Device</a></button>
 
 <button type="button" class="btn btn-danger"><a href="/SAPRClient/removeFlightPlan">Delete FlightPlan</a></button>
+
+<br>
+<br>
+
+<button type="button" class="btn btn-danger"><a href="/SAPRClient/logOut">Log Out</a></button>
+
 </body>
 </html>

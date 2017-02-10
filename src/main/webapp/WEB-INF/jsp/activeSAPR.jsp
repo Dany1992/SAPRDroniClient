@@ -30,5 +30,6 @@
                 <input class="btn btn-success col-xs-12 col-lg-12" type="submit" value="Submit"/>
             </div>
 	</form:form>
+	<a href="/SAPRClient/admin"></a>
 </body>
 </html>

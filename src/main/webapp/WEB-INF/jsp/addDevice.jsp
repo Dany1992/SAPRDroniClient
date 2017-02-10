@@ -19,6 +19,7 @@
 <body>
 <h1>Welcome ${license}</h1>
 <h2>Add new device with parameters</h2>
+<div style="color: red"><h2>${error}</h2></div>
 <form:form method="POST" id="formDevice" action="/SAPRClient/addedDevice">
         <h2>Enter Data of Device: </h2>
   <div class="form-group col-xs-12 col-lg-6">
@@ -128,5 +129,7 @@
   
   <input type="submit" value="Submit" class="btn-success col-xs-12 col-lg-12" id="submit"/>
 </form:form>
+<br>
+<a href="/SAPRClient/pilot">IndexPilot</a>
 </body>
 </html>

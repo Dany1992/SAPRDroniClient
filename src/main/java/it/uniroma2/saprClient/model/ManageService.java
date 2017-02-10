@@ -33,4 +33,6 @@ public interface ManageService {
 	public ArrayList<ResponseSapr> getSAPRs(Opzione op);
 	public ArrayList<String> setAndActiveSaprs(String[] listSapr);
 	public ResponsePilot getPilot(String licensePilots);
+	public ResponseSapr getSapr(int idSapr);
+	public ResponseDevice getDevice(int idDevice);
 }
